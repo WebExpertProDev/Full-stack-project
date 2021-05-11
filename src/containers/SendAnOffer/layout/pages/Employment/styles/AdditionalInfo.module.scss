@@ -1,0 +1,71 @@
+@import "../../../../../../globalStyles/index.scss";
+
+.NewOffer {
+    .title {
+        font-family: Regular;
+        font-size: rem(17);
+        color: $turquoise-blue;
+        padding-top: rem($spacing-xxs);
+        margin-left: rem($spacing-xxs-1);
+    }
+    .employment {
+        color: $greyish-brown;
+        font-size: rem(17);
+        font-family: SemiBoldFont;
+        position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            width: 31px;
+            height: 31px;
+            border-radius: 50%;
+            background-color: #c3edf3;
+            z-index: -1;
+            left: -11px;
+            bottom: -3px;
+        }
+    }
+    .select-wrapper {
+        width: 100%;
+        max-width: 596px;
+        margin-top: 2rem;
+    }
+    .vertical-card {
+        font-family: Regular;
+        .cancel {
+            cursor: pointer;
+            span {
+                color: $turquoise-blue;
+                font-family: Reular;
+                font-size: rem(15);
+                margin-left: rem($spacing-xxs);
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+            margin-bottom: rem($spacing-xs);
+            padding-bottom: rem($spacing-xs);
+            border-bottom: 1px solid $pinkish-grey;
+        }
+        width: 200px;
+
+        p {
+            color: $warm-grey;
+            font-size: rem(15);
+        }
+        img {
+            width: 194.8px;
+            height: 129.8px;
+            object-fit: contain;
+        }
+        svg {
+            width: 19px;
+            height: 19px;
+        }
+        span {
+            color: $greyish-brown;
+            font-size: rem(15);
+            font-family: Regular;
+        }
+    }
+}

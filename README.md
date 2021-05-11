@@ -1,35 +1,124 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Housess Project
 
 ## Getting Started
 
-First, run the development server:
+These scripts refer to the different stages of developing an application:
 
-```bash
-npm run dev
-# or
+- `dev` - Runs `next` which starts Next.js in development mode
+- `build` - Runs `next` build which builds the application for production usage
+- `start` - Runs `next` start which starts a Next.js production server
+
+## System Requirements
+
+- [Node.js](https://nodejs.org/en/) 10 or later
+- MacOS, Windows (including WSL), and Linux are supported
+
+## Setup
+
+1. Clone this repo
+2. Move to the appropriate directory: `cd <DIR>`.
+3. Run `yarn` or `npm install` to install dependencies .
+4. Run `yarn dev` or `npm run dev` to see the example app at `http://localhost:3000`.
+
+## Command Line Commands
+
+## Development
+
+```Shell
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Starts the development server running on `http://localhost:3000`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+> Starts the development server and makes your application accessible at `localhost:3000`. Changes in the application code will be hot-reloaded.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Production
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```Shell
+yarn build && yarn start
+```
 
-## Learn More
+## Building
 
-To learn more about Next.js, take a look at the following resources:
+```Shell
+yarn build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Building with Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+> TODO: this feature is not complete yet !
 
-## Deploy on Vercel
+```shell
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+yarn docker:build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# FRONT_PRODUCTION
+```
+
+Preps app for deployment (does not run tests). Optimizes and minifies all files, piping them to the `src/.next` folder.
+
+## Unit testing
+
+```Shell
+yarn test
+```
+
+Tests application with the unit tests specified in the `**/tests/*.js` files
+throughout the application.
+
+### Watching
+
+```Shell
+yarn test:watch
+```
+
+Watches changes to  application and re-runs tests whenever a file changes.
+
+## Linting
+
+```Shell
+yarn lint
+```
+
+## Prettier
+
+```Shell
+yarn prettier
+```
+
+## Generator
+
+> We Use Generator in This Project for easily scale that and save correct pattern in Project Flow
+
+For Create Component
+
+```Shell
+yarn generate component
+```
+
+For create container
+
+```Shell
+yarn generate container
+```
+
+### you can get more information about `Generator` [here](./docs/Generator.md)
+
+## Structure overview
+
+> TODO:
+
+```text
+├── README.md
+├── next.config.js
+├── package.json
+├── server
+│   ├── internals
+│   │   └── generators
+│   └── app.ts
+├── src
+│  
+└── yarn.lock
+
+```
+
+## For More Information about `ENV_VARIABLE` check [docs](./docs/dotenv-usage.md)

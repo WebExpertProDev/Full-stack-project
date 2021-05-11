@@ -1,61 +1,47 @@
-const withCSS = require("@zeit/next-css")
-const withPurgeCss = require("next-purgecss")
-const withImages = require("next-images")
-const withReactSvg = require("next-react-svg")
-const path = require("path")
+/* eslint-disable prettier/prettier */
+// const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants')
+const withPlugins = require('next-compose-plugins');
+const images = require('next-images');
+const withBundleAnalyzer = require('@next/bundle-analyzer');
+const nextRuntimeDotenv = require('next-runtime-dotenv');
 
-module.exports = withImages({
-  fileExtensions: ["jpg", "jpeg", "png", "gif"],
-  webpack(config) {
-    return config
-  }
-})
+const withConfig = nextRuntimeDotenv({ public: ['API_URL', 'API_KEY'] });
 
-module.exports = withReactSvg({
-  include: path.resolve(__dirname, "/public/static/"),
-  webpack(config) {
-    return config
-  }
-})
-
-const withBabelMinify = require("next-babel-minify")({
-  comments: false
-})
-
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")]
-  }
-}
-
-module.exports = withBabelMinify({
-  webpack(config) {
-    return config
-  }
-})
-
-module.exports = withCSS(
-  {
-    env: {
-      API_URL: process.env.API_URL
-    }
+const nextConfig = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
-  withPurgeCss({
-    purgeCssPaths: [
-      "pages/**/*",
-      "components/**/*", // also scan other-components folder
-      "Layout/**/*"
-    ]
-  })
-)
+  webpackDevMiddleware: config => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    }
 
-module.exports = {
-  webpack: (config, { webpack }) => {
-    // Note: we provide webpack above so you should not `require` it
-    // Perform customizations to webpack config
-    config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+    return config;
+  },
+  poweredByHeader: false,
+  analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+  analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+  bundleAnalyzerConfig: {
+    server: {
+      analyzerMode: 'static',
+      reportFilename: '../bundles/server.html',
+    },
+    browser: {
+      analyzerMode: 'static',
+      reportFilename: '../bundles/client.html',
+    },
+  },
+  publicRuntimeConfig: {
+    PROXY_MODE: process.env.PROXY_MODE,
+    API_URL: process.env.API_URL,
+    API_KEY: process.env.API_KEY,
+    STATIC_PATH: process.env.STATIC_PATH,
+  },
+};
 
-    // Important: return the modified config
-    return config
-  }
-}
+module.exports = withConfig(withPlugins([[images], [withBundleAnalyzer]], nextConfig));

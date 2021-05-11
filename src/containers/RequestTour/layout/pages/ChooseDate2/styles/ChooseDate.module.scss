@@ -1,0 +1,66 @@
+@import "../../../../../../globalStyles/index.scss";
+
+.ChooseDate{
+  
+margin-top:50px;
+  .tour{
+      p{
+          color:$greyish-brown;
+          font-family: SemiBoldFont;
+          font-size: rem(18);
+          @media(max-width: 798px){
+            font-size: rem(16);
+          }
+      }
+  }
+
+  .right{
+      border-left: 1px solid #efefef;
+      padding-left:rem($spacing-m);
+      span{
+          color:$greyish-brown;
+          font-size: rem(17);
+          font-family: Regular;
+          margin-left:rem($spacing-xxs-1);
+          @media(max-width: 798px){
+            font-size: rem(15);
+          }
+      }
+  }
+
+  .radiobtn{
+    display: flex;
+    @media(max-width:578px){
+      flex-direction: column;
+    }
+    .tour-chat{
+      padding-left: rem($spacing-l);
+      border-left:1px solid $pinkish-grey;
+      @media(max-width:578px){
+        padding-left: 0;
+        border-left:none;
+        margin-top:rem($spacing-s);
+      }
+    }
+      svg{
+          width: 33px;
+          height: 33px;
+         
+      }
+      label{
+        margin-left:rem($spacing-xxs) !important;
+      }
+  }
+
+  .cancel{
+      font-size:rem(15);
+      font-family: Regular;
+      color:$turquoise-blue;
+      margin-top:rem($spacing-s);
+      cursor: pointer;
+      span{
+        margin-left:rem($spacing-xxs-1)
+      }
+    
+  }
+}
