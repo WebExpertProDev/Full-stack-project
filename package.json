@@ -1,0 +1,39 @@
+{
+  "name": "housee",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-http-bearer": "^1.0.1",
+    "redis": "^3.0.2",
+    "stripe": "^8.132.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon app",
+    "pm2": "pm2 start server.js --watch",
+    "kill": "pm2 kill",
+    "list": "pm2 list",
+    "logs": "pm2 logs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/kanaansci/housee_backend.git"
+  },
+  "author": "Kanaan Bahmani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/kanaansci/housee_backend/issues"
+  },
+  "homepage": "https://gitlab.com/kanaansci/housee_backend#readme"
+}
