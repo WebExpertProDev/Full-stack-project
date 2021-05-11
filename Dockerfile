@@ -1,31 +1,20 @@
-# Base on offical Node.js Alpine image
-FROM node:alpine
+FROM node:10-alpine
 
-# Set working directory
+ENV PORT 3000
+
+RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
-# Install PM2 globally
-RUN npm install --global pm2
+ENV NODE_ENV production
 
-# Copy package.json and package-lock.json before other files
-# Utilise Docker cache to save re-installing dependencies if unchanged
-COPY ./package*.json ./
+COPY package*.json /usr/src/app
+COPY package.json /usr/src/app
 
-# Install dependencies
-RUN npm install --production
+COPY . /usr/src/app
 
-# Copy all files
-COPY ./ ./
-
-# Build app
-RUN npm run build
-
-# Expose the listening port
 EXPOSE 3000
 
-# Run container as non-root (unprivileged) user
-# The node user is provided in the Node.js Alpine base image
-USER node
+RUN yarn 
 
-# Run npm start script with PM2 when container starts
-CMD [ "pm2-runtime", "npm", "--", "start" ]
+CMD [ "yarn", "dev" ]
