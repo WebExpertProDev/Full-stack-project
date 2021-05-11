@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="24" viewBox="0 0 17 24">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Mask" d="M1.7,9.692a9.522,9.522,0,0,0,.789,11.851,8.579,8.579,0,0,0,12.021,0A9.522,9.522,0,0,0,15.3,9.692L8.5,0Z" transform="translate(16.405 23.823) rotate(180)" fill="#00bbd8"/>
+    </clipPath>
+  </defs>
+  <g id="placeholder" transform="translate(0.595 0.177)">
+    <g id="UI_System_Color_Green03" data-name="UI/System/Color/Green03" transform="translate(0 0)">
+      <path id="Mask-2" data-name="Mask" d="M1.7,9.692a9.522,9.522,0,0,0,.789,11.851,8.579,8.579,0,0,0,12.021,0A9.522,9.522,0,0,0,15.3,9.692L8.5,0Z" transform="translate(16.405 23.823) rotate(180)" fill="#00bbd8"/>
+      <g id="UI_System_Color_Green03-2" data-name="UI/System/Color/Green03" clip-path="url(#clip-path)">
+        <g id="UI_System_Color_Green01" data-name="UI/System/Color/Green01" transform="translate(0.405 -0.177)">
+          <rect id="Rectangle" width="17" height="24" transform="translate(0 0)" fill="#00bbd8"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

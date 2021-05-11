@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    /*background-color: #207565;*/
+    background-color: #c7e5ff;
+}
+
+.ant-menu-dark .ant-menu-submenu-selected {
+    color: black !important;
+    font-size: 20px !important;
+}
+
+.ant-menu-dark .ant-menu-item:not(.logo-class):hover {
+    /*background-color: #207565;*/
+    background-color: #c7e5ff;
+}
+
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+    background: #ffffff;
+}
+
+
+.ant-layout-header {
+    background: #ffffff;
+    line-height: 55px;
+    height: 55px;
+    padding: 0;
+}
+
+.housee-header {
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    width: calc(100% + 15px);
+    z-index: 10;
+}
+
+.ant-menu-dark .ant-menu-item > a {
+    color: #383232;
+}
+
+.ant-menu-dark .ant-menu-item > a:hover {
+    color: #383232;
+}
+
+.ant-spin-dot {
+    position: fixed !important;
+}
+
+.site-page-header-ghost-wrapper {
+    /*border-style: ridge;*/
+    /*border-color: #9c9c9c;*/
+    /*border-width: 1px;*/
+}
+
+.ant-picker {
+    width: 280px;
+}
+
+.search-page .ant-picker {
+    width: 200px;
+}
+
+
+/*COLORS*/
+:root {
+    --turquoise-blue: #00bbd8;
+    --white: #f7f7f7;
+    --duck-egg-blue: #c3edf3;
+    --warm-grey: #7b7b7b;
+    --greyish-brown: #3f3f3f;
+    --pinkish-grey: #c7c7c7;
+    --green-blue: #00b4a2;
+    --greyish: #a7a7a7;
+    --purpley-grey: #908f91;
+    --black: #181818;
+    --lightblue: #8bd2ec;
+}
+
+
+/* SPACINGS */
+:root {
+    --spacing-xxs: 8px;
+    --spacing-xs: 16px;
+    --spacing-s: 24px;
+    --spacing-m: 32px;
+    --spacing-l: 40px;
+    --spacing-xl: 48px;
+    --spacing-xxl: 56px;
+    --spacing-xxl-2: 64px;
+}
+
+
+@font-face {
+    font-family: Montserrat;
+    src: local(Montserrat-Bold-),
+    url(/path/to/Montserrat-Bold-.woff2) format("woff2"),
+    url(/path/to/Montserrat-Bold-.woff) format("woff"),
+    url(/path/to/Montserrat-Bold-.ttf) format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: Roboto;
+    src: local(Roboto-Regular),
+    url(/path/to/Roboto-Regular.woff2) format("woff2"),
+    url(/path/to/Roboto-Regular.woff) format("woff"),
+    url(/path/to/Roboto-Regular.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: SegoeUI;
+    src: local(SegoeUI-Regular),
+    url(/fonts/segoeui-regular.woff2) format("woff2"),
+    url(/fonts/segoeui-regular.woff) format("woff");
+    /*url(/path/to/SegoeUI-Regular.ttf) format("truetype");*/
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: SegoeUI;
+    src: local(SegoeUI-Semibold),
+    url(/fonts/segoeui-semibold.woff2) format("woff2"),
+    url(/fonts/segoeui-semibold.woff) format("woff");
+    /*url(/path/to/SegoeUI-Semibold.ttf) format("truetype");*/
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+}
+.Segoe-UI-37pt {
+    font-family: SegoeUI;
+    font-size: 37px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--warm-grey);
+}
+.Segoe-UI-25pt {
+    font-family: SegoeUI;
+    font-size: 25px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--warm-grey);
+}
+.Segoe-UI-20pt {
+    font-family: SegoeUI;
+    font-size: 20px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+.Segoe-UI-18pt {
+    font-family: SegoeUI;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #595959;
+}
+.Segoe-UI-17pt {
+    font-family: SegoeUI;
+    font-size: 17px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+.Segoe-UI-16pt {
+    font-family: SegoeUI;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--turquoise-blue);
+}
+.Segoe-UI-15pt {
+    font-family: SegoeUI;
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--greyish);
+}
+.Segoe-UI-14pt {
+    font-family: SegoeUI;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--warm-grey);
+}
+.Montserrat-Bold-13pt {
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+.Segoe-UI-12pt {
+    font-family: SegoeUI;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--greyish);
+}
+.Roboto-10pt {
+    font-family: Roboto;
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--turquoise-blue);
+}
+.Segoe-UI-10pt {
+    font-family: SegoeUI;
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.05px;
+    color: #595959;
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="4" height="4" viewBox="0 0 4 4">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Mask" cx="2" cy="2" r="2" transform="translate(-0.273)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="UI_System_Count_Active" data-name="UI/System/Count/Active" transform="translate(0.273)">
+    <circle id="Mask-2" data-name="Mask" cx="2" cy="2" r="2" transform="translate(-0.273)" fill="none"/>
+    <g id="UI_System_Count_Active-2" data-name="UI/System/Count/Active" transform="translate(0 0)" clip-path="url(#clip-path)">
+      <g id="UI_System_Color_Green01" data-name="UI/System/Color/Green01">
+        <rect id="Rectangle" width="4" height="4" transform="translate(-0.273)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
