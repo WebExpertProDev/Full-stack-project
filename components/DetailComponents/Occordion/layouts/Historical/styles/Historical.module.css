@@ -1,0 +1,150 @@
+@font-face {
+  font-family: LightFont;
+  src: local("Segoe UI Light"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2) format("woff2"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff) format("woff"),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf) format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: semiLightFont;
+  src: local("Segoe UI Semilight"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2)
+      format("woff2"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff)
+      format("woff"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf)
+      format("truetype");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Regular;
+  src: local("Segoe UI"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2)
+      format("woff2"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff)
+      format("woff"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf)
+      format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: BoldFont;
+  src: local("Segoe UI Bold"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2)
+      format("woff2"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff)
+      format("woff"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf)
+      format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: SemiBoldFont;
+  src: local("Segoe UI Semibold"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff2)
+      format("woff2"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff)
+      format("woff"),
+    url(https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf)
+      format("truetype");
+  font-weight: 700;
+}
+
+.historical {
+  padding-top: 1rem;
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.historical .tree {
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  width: auto;
+  height: 329px;
+  margin-bottom: 2rem;
+}
+
+.group-btn {
+  width: 290px;
+}
+
+.rentBtn button {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  width: 100%;
+  height: 50px;
+}
+
+.rentBtn button:hover {
+  border: 1px solid #00bbd8 !important;
+  color: #00bbd8 !important;
+}
+
+.rentBtnActive button {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border: 1px solid #00bbd8 !important;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16) !important;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16) !important;
+  color: #00bbd8 !important;
+  width: 100%;
+  height: 50px;
+}
+
+.buyBtn button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 100%;
+  height: 50px;
+}
+
+.buyBtn button:hover {
+  border: 1px solid #00bbd8;
+  color: #00bbd8;
+}
+
+.buyBtnActive button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: 1px solid #00bbd8;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  color: #00bbd8;
+  width: 100%;
+  height: 50px;
+}
+
+.historical .historical-list {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #3f3f3f;
+  font-family: Regular;
+}
+
+.historical .historical-list li {
+  margin-bottom: 2rem;
+}
+
+.historical .historical-list li .liststyle {
+  width: 13px;
+  height: 13px;
+  border-radius: 100%;
+  background-color: #00bbd8;
+}
+
+.historical .price {
+  font-size: 1.125rem;
+  color: #7b7b7b;
+  font-family: Regular;
+}
+
+.historical .percentage {
+  font-size: 1.0625rem;
+  color: #3f3f3f;
+  font-family: SemiBoldFont;
+}
+/*# sourceMappingURL=Historical.module.css.map */

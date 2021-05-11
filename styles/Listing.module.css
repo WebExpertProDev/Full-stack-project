@@ -1,0 +1,27 @@
+/* .housecardmap {
+    width: 100%;
+    margin: auto;
+    @media (max-width: 1378px) {
+        width: 87%;
+        margin: auto;
+    }
+    @media (max-width: 1278px) {
+        width: 90%;
+        margin: auto;
+    }
+} */
+
+.housecard {
+  width: 51%;
+}
+
+@media (max-width: 714px) {
+  .housecard {
+    width: 100%;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: 10;
+    top: 63vh;
+  }
+}
