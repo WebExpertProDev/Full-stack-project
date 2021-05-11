@@ -10,4 +10,4 @@ declare namespace ISelect {
   }
 }
 
-export { ISelect };
+export type { ISelect };

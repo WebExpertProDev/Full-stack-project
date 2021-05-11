@@ -51,7 +51,6 @@ export const Verification: React.FunctionComponent<IVerification.IProps> = ({
       .then(data => {
         console.log(data.code);
         localStorage.setItem("OTP", data.code);
-        window.localStorage.setItem("userid", data.userid);
         return;
       })
       .catch(err => console.log("error"));

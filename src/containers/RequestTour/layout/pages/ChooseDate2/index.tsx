@@ -3,7 +3,7 @@
  * ChooseDate2
  *
  */
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "@Components/Button";
@@ -11,7 +11,7 @@ import Link from "@Components/Link";
 import RadioButton from "@Components/RadioButton";
 import { useRouter } from "next/router";
 import BCalendar from "@Components/Calender";
-import userContext from "../../../../../context/userContext";
+
 // styles
 import styles from "./styles/ChooseDate.module.scss";
 
@@ -37,7 +37,6 @@ export const ChooseDate2: React.FunctionComponent<IChooseDate2.IProps> = ({
   startDate,
   endDate
 }) => {
-  const { user, setUser } = useContext(userContext);
   const weekday = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const month = [
     "January",
@@ -69,12 +68,7 @@ export const ChooseDate2: React.FunctionComponent<IChooseDate2.IProps> = ({
   }
   const requestTour = () => {
     if (!agentInfo) {
-      if (user.username == null) {
-        console.log("User not logged in");
-        changePageHandler(3);
-      } else {
-        changePageHandler(4);
-      }
+      changePageHandler(4);
       return;
     } else {
       changePageHandler(2);

@@ -1,7 +1,5 @@
 declare namespace ISimilarHomesList {
-  export interface IProps {
-    similarHomes?: any;
-  }
+  export interface IProps {}
 }
 
-export { ISimilarHomesList };
+export type { ISimilarHomesList };

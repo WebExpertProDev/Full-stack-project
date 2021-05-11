@@ -1,11 +1,8 @@
 declare namespace ISelectInput {
   export interface IProps {
-    items: Array;
-    nextHandler: Function;
-    backHandler: Function;
+    offerItems: Array;
     active?: boolean;
-    selectHandler: Function;
   }
 }
 
-export { ISelectInput };
+export type { ISelectInput };

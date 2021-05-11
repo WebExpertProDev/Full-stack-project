@@ -1,7 +1,5 @@
 declare namespace IDetailOccordion {
-  export interface IProps {
-    detail?: any;
-  }
+  export interface IProps {}
 }
 
-export { IDetailOccordion };
+export type { IDetailOccordion };

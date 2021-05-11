@@ -5,4 +5,4 @@ declare namespace IInputNumber {
   }
 }
 
-export { IInputNumber };
+export type { IInputNumber };

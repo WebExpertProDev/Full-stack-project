@@ -5,4 +5,4 @@ declare namespace IHeader {
   }
 }
 
-export { IHeader };
+export type { IHeader };

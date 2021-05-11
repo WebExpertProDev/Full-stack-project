@@ -1,7 +1,5 @@
 declare namespace INearbyHomesList {
-  export interface IProps {
-    nearbyHomes?: any;
-  }
+  export interface IProps {}
 }
 
-export { INearbyHomesList };
+export type { INearbyHomesList };

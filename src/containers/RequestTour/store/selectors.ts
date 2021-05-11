@@ -6,4 +6,4 @@ import { initialState } from './reducer';
 
 // const selectRequestTour = () => createSelector(selectRequestTourdomain, subState => subState);
 
-// export { selectRequestTour, selectRequestTourdomain };
+// export type { selectRequestTour, selectRequestTourdomain };

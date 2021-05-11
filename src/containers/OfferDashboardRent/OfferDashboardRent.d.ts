@@ -4,4 +4,4 @@ declare namespace IOfferDashboardRent {
     }
 }
 
-export { IOfferDashboardRent }
+export type { IOfferDashboardRent }

@@ -1,7 +1,5 @@
 declare namespace ISellPremium {
-  export interface IProps {
-    changePageHandler: function;
-  }
+  export interface IProps {}
 }
 
-export { ISellPremium };
+export type { ISellPremium };

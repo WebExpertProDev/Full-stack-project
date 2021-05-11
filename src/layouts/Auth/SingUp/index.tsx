@@ -4,8 +4,7 @@
  *
  */
 import React, { useState } from "react";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+
 // components
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
@@ -14,6 +13,7 @@ import Privacy from "../Privacy";
 // svg
 import Facebook from "../svg/facebook.svg";
 import Google from "../svg/google.svg";
+import HiddenPass from "../svg/eye-slash-solid.svg";
 
 // styles
 import Styles from "./styles/SignUp.module.scss";
@@ -22,33 +22,19 @@ export const SignUp: React.FunctionComponent = () => {
   const [showPrivacy, setShowPrivacy] = useState<Boolean>(false);
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-  const [useEmail, setUseEmail] = useState<boolean>(false);
-  const [externalType, setExternalType] = useState<string>("");
-  const clientId =
-    "480480617938-hah668dngr5tfrjrkeun7omkru4fsf0i.apps.googleusercontent.com";
-  //"564787136738-go02kpuhqsnd6q12o3armikn2b3ob5rb.apps.googleusercontent.com"; //put clientId for google projects here
-  const appid = ""; //appid for facebook projects
-  const responseGoogle = response => {
-    console.log("Google Login Success");
-    setPhone(response.profileObj.email);
-    setName(response.profileObj.name);
-    setUseEmail(true);
-    setShowPrivacy(true);
-    setExternalType("Google");
-  };
+  // const [password, setPassword] = useState<string>("");
+  // const [passwordConfirm, setPasswordConfirm] = useState<string>("");
 
-  const handleLoginFailure = error => {
-    console.log("Google Login Failure ", error);
-  };
-  const responseFacebook = response => {
-    console.log("Facebook Login Success");
-    setName(response.name);
-    setPhone(response.email);
-    setUseEmail(true);
-    setShowPrivacy(true);
-    setExternalType("Facebook");
-  };
   const handleClick = () => {
+    // if (password == passwordConfirm) {
+    //   setShowPrivacy(true);
+    //   return;
+    // } else {
+    //   var err = document.getElementById("errMsg");
+    //   err.style.color = "red";
+    //   err.innerHTML = "Password and Confirm Password must match!";
+    //   return;
+    // }
     setShowPrivacy(true);
     return;
   };
@@ -56,51 +42,19 @@ export const SignUp: React.FunctionComponent = () => {
   return (
     <>
       {showPrivacy ? (
-        <Privacy
-          phoneNum={phone}
-          name={name}
-          DeclinePrivacy={setShowPrivacy}
-          useEmail={useEmail}
-          cleanPhone={setPhone}
-          cleanName={setName}
-          type={externalType}
-        />
+        <Privacy phoneNum={phone} name={name} DeclinePrivacy={setShowPrivacy}/>
       ) : (
         <form>
           <p className={Styles.title}>Sign Up</p>
           <div className="mb-3">
-            <FacebookLogin
-              appId={appid}
-              render={renderProps => (
-                <Button
-                  theme="default"
-                  hasIcon={<Facebook />}
-                  handleClick={renderProps.onClick}
-                >
-                  Sign up with Facebook
-                </Button>
-              )}
-              autoLoad
-              fields="name,email,picture"
-              callback={responseFacebook}
-              icon={<Facebook />}
-            />
+            <Button hasIcon={<Facebook />} theme="default">
+              Sign up with Facebook
+            </Button>
           </div>
           <div className="mb-3">
-            <GoogleLogin
-              clientId={clientId}
-              render={renderProps => (
-                <Button
-                  theme="default"
-                  hasIcon={<Google />}
-                  handleClick={renderProps.onClick}
-                >
-                  Sign up with Google
-                </Button>
-              )}
-              onSuccess={responseGoogle}
-              onFailure={handleLoginFailure}
-            />
+            <Button hasIcon={<Google />} theme="default">
+              Sign up with Google
+            </Button>
           </div>
 
           <div className={Styles.divider}>or</div>
@@ -122,6 +76,26 @@ export const SignUp: React.FunctionComponent = () => {
               id="phone"
             />
           </div>
+          {/* <div className="mb-5 ">
+            <Input
+              value={password}
+              change={setPassword}
+              label="Password"
+              type="Password"
+              hasIcon={<HiddenPass />}
+              id="pass"
+            />
+          </div> */}
+          {/* <div>
+            <Input
+              value={passwordConfirm}
+              change={setPasswordConfirm}
+              label="Confirm Password"
+              type="Password"
+              hasIcon={<HiddenPass />}
+              id="confirmpass"
+            />
+          </div> */}
           <div className="mb-4 mt-4">
             <Button theme="primary" handleClick={handleClick}>
               Sign Up

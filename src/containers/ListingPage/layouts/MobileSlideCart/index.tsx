@@ -29,8 +29,7 @@ import Styles from "./styles/MobileSlide.module.scss";
 SwiperCore.use([Virtual]);
 
 export const MobileSlideCart: React.FunctionComponent<IMobileSlideCart.IProps> = ({
-  cardItems,
-  currentItem
+  cardItems
 }) => {
   const size = useWindowSize();
   const router = useRouter();
@@ -138,47 +137,12 @@ export const MobileSlideCart: React.FunctionComponent<IMobileSlideCart.IProps> =
       >
         {cardItems.map((cardItem, index) => (
           <SwiperSlide key={index}>
-            {currentItem == cardItem._id ? (
-              <HouseCard
-                key={index}
-                cardDetails={{
-                  id: cardItem._id,
-                  image: cardItem.image[0],
-                  city: cardItem.city,
-                  streetAddress: cardItem.streetAddress,
-                  price:
-                    cardItem.historyPrice[cardItem.historyPrice.length - 1],
-                  size: cardItem.overview.size,
-                  bedroomCount: cardItem.overview.bedroomCount,
-                  bathroomCount: cardItem.overview.bathroomCount,
-                  dateListed: cardItem.dateListed,
-                  label: "",
-                  priceDiff: ""
-                }}
-                size="sm"
-                active={true}
-              />
-            ) : (
-              <HouseCard
-                key={index}
-                cardDetails={{
-                  id: cardItem._id,
-                  image: cardItem.image[0],
-                  city: cardItem.city,
-                  streetAddress: cardItem.streetAddress,
-                  price:
-                    cardItem.historyPrice[cardItem.historyPrice.length - 1],
-                  size: cardItem.overview.size,
-                  bedroomCount: cardItem.overview.bedroomCount,
-                  bathroomCount: cardItem.overview.bathroomCount,
-                  dateListed: cardItem.dateListed,
-                  label: "",
-                  priceDiff: ""
-                }}
-                size="sm"
-                active={false}
-              />
-            )}
+            <HouseCard
+              key={index}
+              cardDetails={cardItem}
+              size="sm"
+              onDoubleClick={e => navigateToDetailPage(e)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -6,4 +6,4 @@ import { initialState } from './reducer';
 
 // const selectSellMyHouse = () => createSelector(selectSellMyHousedomain, subState => subState);
 
-// export { selectSellMyHouse, selectSellMyHousedomain };
+// export type { selectSellMyHouse, selectSellMyHousedomain };

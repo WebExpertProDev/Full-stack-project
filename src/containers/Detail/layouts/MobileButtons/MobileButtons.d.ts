@@ -1,7 +1,5 @@
 declare namespace IMobileButtons {
-  export interface IProps {
-    detail;
-  }
+  export interface IProps {}
 }
 
-export { IMobileButtons };
+export type { IMobileButtons };

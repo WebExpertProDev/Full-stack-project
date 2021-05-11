@@ -6,4 +6,4 @@ import { initialState } from './reducer';
 
 // const selectOfferDashboardRent = () => createSelector(selectOfferDashboardRentdomain, subState => subState);
 
-// export { selectOfferDashboardRent, selectOfferDashboardRentdomain };
+// export type { selectOfferDashboardRent, selectOfferDashboardRentdomain };

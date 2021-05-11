@@ -17,11 +17,9 @@ import { IHouseCardList } from "./HouseCardList";
 // import cartImage from '../../../../../public/static/images/building.png';
 
 // eslint-disable-next-line max-len
-
 export const HouseCardList: React.FunctionComponent<IHouseCardList.IProps> = ({
   cartLayout,
-  cardItems,
-  currentItem
+  cardItems
 }) => (
   <>
     <div>
@@ -40,47 +38,9 @@ export const HouseCardList: React.FunctionComponent<IHouseCardList.IProps> = ({
               cartLayout ? styles.housecard : styles["house-card-mobile"]
             } `}
           >
-            {currentItem == cardItem._id ? (
-              <HouseCard
-                key={index}
-                cardDetails={{
-                  id: cardItem._id,
-                  image: cardItem.image[0],
-                  city: cardItem.city,
-                  streetAddress: cardItem.streetAddress,
-                  price:
-                    cardItem.historyPrice[cardItem.historyPrice.length - 1],
-                  size: cardItem.overview.size,
-                  bedroomCount: cardItem.overview.bedroomCount,
-                  bathroomCount: cardItem.overview.bathroomCount,
-                  dateListed: cardItem.dateListed,
-                  label: "",
-                  priceDiff: ""
-                }}
-                size="lg"
-                active={true}
-              />
-            ) : (
-              <HouseCard
-                key={index}
-                cardDetails={{
-                  id: cardItem._id,
-                  image: cardItem.image[0],
-                  city: cardItem.city,
-                  streetAddress: cardItem.streetAddress,
-                  price:
-                    cardItem.historyPrice[cardItem.historyPrice.length - 1],
-                  size: cardItem.overview.size,
-                  bedroomCount: cardItem.overview.bedroomCount,
-                  bathroomCount: cardItem.overview.bathroomCount,
-                  dateListed: cardItem.dateListed,
-                  label: "",
-                  priceDiff: ""
-                }}
-                size="lg"
-                active={false}
-              />
-            )}
+            <Link href={"/detail/" + cardItem._id}>
+              <HouseCard key={index} cardDetails={cardItem} size="lg" />
+            </Link>
           </div>
         ))}
       </CSSTransitionGroup>

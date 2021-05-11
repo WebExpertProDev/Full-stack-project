@@ -2,4 +2,4 @@ declare namespace IAdditionalInfo {
     export interface IProps {}
 }
 
-export { IAdditionalInfo }
+export type { IAdditionalInfo }

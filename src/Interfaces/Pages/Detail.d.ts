@@ -2,4 +2,4 @@ declare namespace IDetailPage {
   export interface IProps {}
 }
 
-export { IDetailPage };
+export type { IDetailPage };

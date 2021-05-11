@@ -10,8 +10,6 @@
     }
     .input-number{
         margin-left:rem($spacing-m);
-        font-family: Regular;
-        width: 15%;
     }
 
     .left-custom-tabel , .right-custom-tabel {
@@ -23,7 +21,7 @@
        
      
         .table-title{
-            width: 100%;
+            width: 80%;
             text-align: center;
             color:#707070;
             font-size: rem(16);
@@ -39,14 +37,13 @@
             @media(max-width:846px){
                 font-size: rem(18);
             }
-            
         }
         .number{
-            width: 100%;
+            width: 80%;
           
         }
         .percantage{
-            width: 35%;
+            width: 135px;
             border-left:3px solid  #f3f3f3;
         }
         .slidertd{
@@ -68,7 +65,6 @@
             }
         
             .titleTable{
-                width: 100%;
                 padding:em($spacing-s,16) em($spacing-xxs,16);
                 @media(max-width:846px){
                     padding:em($spacing-xs,16) em($spacing-xxs,16);
@@ -80,11 +76,8 @@
             }
            
             .price{
-                width: 35%;
                 border-left:3px solid  #f3f3f3;
                 border-bottom:3px solid #f3f3f3;
-                border-top: none;
-                border-right: none;
                 text-align: center;
                 min-width: 135px;
                 padding:rem($spacing-s)  0;
@@ -160,15 +153,7 @@
     }
 }
 
-.feature{
-    span{
-        color:$greyish-brown;
-        font-size: rem(17);
-        font-family: Regular;
-    }
 
- 
-}
 
 
 
@@ -185,8 +170,8 @@
     background: linear-gradient(
       to right,
       rgb(0, 187, 216) 0%,
-      rgb(0, 187, 216) 33.33333%,
-      rgb(255, 255, 255) 33.33333%,
+      rgb(0, 187, 216) 50%,
+      rgb(255, 255, 255) 50%,
       rgb(199, 199, 199) 0%
     );
   @media(max-width: 671px){
@@ -225,64 +210,6 @@
     border: 2px solid $turquoise-blue;
   }
   .slider::-ms-fill-lower {
-    background: $turquoise-blue;
-    border-radius: 10px;
-  }
-  
-
-.slider2 {
-    width: 100%;
-    height: 10px;
-    max-width: 580px;
-    -webkit-appearance: none;
-   
-    margin-top: em($spacing-xxl-2,18);
-    background-color: $pinkish-grey;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-    background: linear-gradient(
-      to right,
-      rgb(0, 187, 216) 0%,
-      rgb(0, 187, 216) 50%,
-      rgb(255, 255, 255) 50%,
-      rgb(199, 199, 199) 0%
-    );
-  @media(max-width: 671px){
-    margin-top: em($spacing-xl,18);
-  }
-  }
-  .slider2:focus {
-    outline: none;
-  }
-  .slider2::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 38px;
-    margin: -10px 0;
-    width: 38px;
-    cursor: pointer;
-    border: 6px solid $turquoise-blue;
-    background: white;
-    border-radius: 50%;
-  }
-  .slider2::-moz-range-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 20px;
-    margin: -10px 0;
-    width: 20px;
-    cursor: pointer;
-    border: none;
-    background: $turquoise-blue;
-    border-radius: 50%;
-  }
-  .slider2::range-progress {
-    height: 20px;
-    border-radius: 10px 0 0 10px;
-    background-color: $turquoise-blue;
-    border: 2px solid $turquoise-blue;
-  }
-  .slider2::-ms-fill-lower {
     background: $turquoise-blue;
     border-radius: 10px;
   }

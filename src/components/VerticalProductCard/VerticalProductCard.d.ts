@@ -14,4 +14,4 @@ declare namespace IVerticalProductCard {
   }
 }
 
-export { IVerticalProductCard };
+export type { IVerticalProductCard };

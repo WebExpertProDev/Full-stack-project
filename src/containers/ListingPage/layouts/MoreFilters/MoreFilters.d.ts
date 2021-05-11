@@ -4,4 +4,4 @@ declare namespace IMoreFilters {
   }
 }
 
-export { IMoreFilters };
+export type { IMoreFilters };

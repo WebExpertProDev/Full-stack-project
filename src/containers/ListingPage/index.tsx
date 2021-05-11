@@ -3,7 +3,7 @@
  * ListingPage
  *
  */
-import React, { memo, useState, useEffect, useContext, useRef } from "react";
+import React, { memo, useState, useEffect, useContext } from "react";
 import { Flipper, Flipped } from "react-flip-toolkit";
 import { useRouter } from "next/router";
 import userContext from "../../context/userContext";
@@ -31,113 +31,176 @@ import styles from "./styles/ListingPage.module.scss";
 import allmyhomies from "../../../../DEV_BACKEND/public/rentImages/allmyhomies";
 import cartImage from "../../../public/static/images/building.png";
 //API call
-import {
-  getSellListing,
-  getRentimage,
-  getHomeFilter,
-  getHomeListing,
-  getRentListing
-} from "./action";
+import { getSellListing, getRentimage, getRentListing } from "./action";
+
+const mapMarkers = [
+  {
+    address: "Marker1",
+    latlng: {
+      lat: 59.95,
+      lng: 30.33
+    },
+    description: ""
+  },
+  {
+    address: "Marker2",
+    latlng: {
+      lat: 59.962,
+      lng: 30.332
+    },
+    description: ""
+  },
+  {
+    address: "Marker3",
+    latlng: {
+      lat: 59.9506,
+      lng: 30.325
+    },
+    description: ""
+  }
+];
 
 const ListingPage: React.FunctionComponent<IListingPage.IProps> = () => {
   const { user, setUser } = useContext(userContext);
   const [showMap, setShowMap] = useState<boolean>(true);
-  const isMount = useRef(false);
+
   const [data, setdata] = useState([]);
   const [currentdata, setcurrentdata] = useState([]);
-  const [currentPage, setcurrentPage] = useState<number>(1);
-  const [pagesCount, setpagesCount] = useState<number>(0);
-  const [position, setposition] = useState([0, 0]);
-  const [currentlocation, changelocation] = useState(null);
-  const [activefilter, setactivefilter] = useState([]);
+  const [rentsell, setrentsell] = useState("rent");
   const size = useWindowSize();
+  const [markers, setMarkers] = useState(mapMarkers);
   const setFilterOnData = ({ filterOptions, formFields }) => {
-    const {
-      roomCount,
-      bathroomCount,
-      parkingCount,
-      minPrice,
-      maxPrice,
-      utilities
-    } = formFields;
-
-    console.log("FIlter");
-    setactivefilter(utilities.filter(element => element.status == true));
-    const filterSubmission = {
-      forRent: formFields.type.title.toLowerCase() == "rent",
-      bedRoomCount: roomCount.title,
-      bathRoomCount: bathroomCount.title,
-      parkingCount: parkingCount.title,
-      minprice: minPrice,
-      maxprice: maxPrice,
-      propertyFeatures: activefilter,
-      position
-    };
-
-    const { search } = formFields;
-
-    // });
+    if (rentsell == "rent") {
+      getRentListing(setdata, setpagesCount, setcurrentdata, currentPage);
+    } else {
+      getSellListing(setdata, setpagesCount, setcurrentdata, currentPage);
+    }
+    let filterdData = data;
     console.log(formFields);
-    console.log(filterSubmission);
-    getHomeFilter(
-      filterSubmission,
-      search,
-      setdata,
-      setpagesCount,
-      setcurrentdata,
-      setcurrentPage
-    );
+    const searchString = formFields.search ? formFields.search.toString() : "";
+
+    // Filter By  search
+    if (searchString !== "") {
+      filterdData = filterdData.filter(option => {
+        const searchByAddress =
+          option.streetAddress
+            .toLowerCase()
+            .indexOf(searchString.toLowerCase()) > -1;
+        const searchByCity =
+          option.city.toLowerCase().indexOf(searchString.toLowerCase()) > -1;
+        const searchByProvince =
+          option.province.toLowerCase().indexOf(searchString.toLowerCase()) >
+          -1;
+        const searchByUnit =
+          option.unitNumber.toLowerCase().indexOf(searchString.toLowerCase()) >
+          -1;
+        const searchByPostalCode =
+          option.postalCode.toLowerCase().indexOf(searchString.toLowerCase()) >
+          -1;
+
+        return (
+          searchByCity ||
+          searchByAddress ||
+          searchByProvince ||
+          searchByUnit ||
+          searchByPostalCode
+        );
+      });
+    }
+    // Filter By Type (Rent/Buy)
+    setrentsell(formFields.type.title.toLowerCase());
+    console.log(rentsell);
+    filterdData = filterdData.filter(option => {
+      const bedsOption =
+        option.bedRoomCount === String(formFields.roomCount.title);
+      const bathOption =
+        option.bathRoomCount === String(formFields.bathRoomCount);
+      // const filterByMinPrice =
+      //   formFields.minPrice !== 0
+      //     ? option.price > Number(formFields.minPrice)
+      //     : true;
+      // const filterByMaxPrice =
+      //   formFields.maxPrice !== 0
+      //     ? option.price < Number(formFields.maxPrice)
+      //     : true;
+      // console.log(bedsOption);
+      return bedsOption && bathOption;
+      // return typeOption && bedsOption && filterByMinPrice && filterByMaxPrice;
+    });
+
+    // console.log('filter data');
+    // console.log(filterdData);
+    // console.log(filterdData.length);
+    setdata(filterdData);
   };
 
   // Pagination
 
+  const [currentPage, setcurrentPage] = useState<number>(1);
+  const [pagesCount, setpagesCount] = useState<number>(0);
+  const [position, setposition] = useState([50, 50]);
   const pincheck = (lat, lng) => {
     setposition([lat, lng]);
   };
   useEffect(() => {
+    if (rentsell == "rent") {
+      getRentListing(setdata, setpagesCount, setcurrentdata, currentPage);
+    } else {
+      getSellListing(setdata, setpagesCount, setcurrentdata, currentPage);
+    }
+
     if ("geolocation" in navigator) {
       // GeolocationPosition.coords;
       navigator.geolocation.getCurrentPosition(function(pos) {
         setposition([pos.coords.latitude, pos.coords.longitude]);
+        console.log(position);
       });
-
       console.log("available");
     } else {
       console.log("Not available");
     }
+    // const maxpage = 10;
+    // const count = data.length / 10;
+    // setpagesCount(Math.round(count));
+    // setcurrentdata(data.slice(currentPage, currentPage + 10));
   }, []);
 
   useEffect(() => {
-    if (isMount.current) {
-      getHomeListing(
-        { forRent: false, position },
-        setdata,
-        setpagesCount,
-        setcurrentdata,
-        setcurrentPage
-      );
-    } else {
-      isMount.current = true;
-    }
-  }, [position]);
-
-  useEffect(() => {
-    let count = data.length / 10;
-    if (data.length % 10 > 0) {
-      count += 1;
-    }
-    setpagesCount(Math.floor(count));
-    console.log(currentdata);
+    const maxpage = 10;
+    const count = data.length / 10;
+    setpagesCount(Math.round(count));
     setcurrentdata(data.slice((currentPage - 1) * 10, currentPage * 10));
-    console.log(currentdata);
   }, [currentPage]);
 
+  useEffect(() => {
+    const maxpage = 10;
+    const count = data.length / 10;
+    setpagesCount(Math.round(count));
+    setcurrentdata(data.slice((currentPage - 1) * 10, currentPage * 10));
+  }, [data]);
+
+  useEffect(() => {
+    if (rentsell == "rent") {
+      getRentListing(setdata, setpagesCount, setcurrentdata, currentPage);
+    } else {
+      getSellListing(setdata, setpagesCount, setcurrentdata, currentPage);
+    }
+  }, [rentsell]);
+  // useEffect(() => {
+  //    const maxpage = 10;
+  //   const count = data.length / 10;
+  //   console.log(count);
+  //   setpagesCount(Math.round(count));
+  //   setcurrentdata(data.slice(currentPage, currentPage + 10));
+
+  // }, []);
+
   const backPage = () => {
-    setcurrentPage(prev => (prev > 1 ? prev - 1 : 1));
+    setcurrentPage(prev => (prev > 0 ? prev - 1 : 0));
   };
 
   const nextPage = () => {
-    setcurrentPage(prev => (prev < pagesCount ? prev + 1 : pagesCount));
+    setcurrentPage(prev => prev + 1);
   };
 
   const gotoPage = page => {
@@ -147,28 +210,8 @@ const ListingPage: React.FunctionComponent<IListingPage.IProps> = () => {
   return (
     <>
       <MainHeader openAuthModel={() => {}} Theme="light" />
-      <Filters
-        filterHandler={setFilterOnData}
-        setShowMap={() => setShowMap(!showMap)}
-      />
-
+      <Filters filterHandler={setFilterOnData} />
       <section>
-        <Container className="p-lg-0" fluid="xl">
-          <div className={styles.activeFilter}>
-            <div className={styles["btn-groups"]}>
-              {activefilter.map(item => {
-                return (
-                  <div className={styles.hidebtn}>
-                    <Button theme="outline" size="md" font="15px">
-                      {item.schematitle}
-                    </Button>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-
         <Container className="p-lg-0" fluid="xl">
           <div className={styles.listHeader}>
             <div className={styles["btn-groups"]}>
@@ -190,7 +233,7 @@ const ListingPage: React.FunctionComponent<IListingPage.IProps> = () => {
                   theme="dd-wrapper-secondary"
                 />
               </div>
-              {/* <div className={styles.hidebtn}>
+              <div className={styles.hidebtn}>
                 <Button
                   theme="outline"
                   size="md"
@@ -212,7 +255,7 @@ const ListingPage: React.FunctionComponent<IListingPage.IProps> = () => {
               </div>
               <div>
                 Those 2 buttons will be removed it is for protype purposes
-              </div> */}
+              </div>
             </div>
 
             <span className={styles.results}>{`${
@@ -238,8 +281,6 @@ const ListingPage: React.FunctionComponent<IListingPage.IProps> = () => {
                       latitude={position[0]}
                       longitude={position[1]}
                       json={currentdata}
-                      locationchange={changelocation}
-                      locationcurrent={currentlocation}
                     />
                   </div>
                 </div>
@@ -250,17 +291,10 @@ const ListingPage: React.FunctionComponent<IListingPage.IProps> = () => {
               <div
                 className={!showMap ? styles.housecardmap : styles.housecard}
               >
-                {size > 714 || !showMap ? (
-                  <HouseList
-                    cardItems={currentdata}
-                    cartLayout={showMap}
-                    currentItem={currentlocation}
-                  />
+                {size > 714 ? (
+                  <HouseList cardItems={currentdata} cartLayout={showMap} />
                 ) : (
-                  <MobileSlider
-                    cardItems={currentdata}
-                    currentItem={currentlocation}
-                  />
+                  <MobileSlider cardItems={currentdata} />
                 )}
               </div>
             </Flipped>

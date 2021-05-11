@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { Container } from "react-bootstrap";
 import Button from "@Components/Button";
 import Input from "@Components/Input";
-import userContext from "../../../../../context/userContext";
 // import Notification from '@Components/Notification';
 import { IVerification } from "./Verification";
 
@@ -19,7 +18,7 @@ export const index: React.FunctionComponent<IVerification.IProps> = ({
   const [verificationCode, setverificationCode] = useState<string>("");
   const [name, setname] = useState<string>("");
   const [phone, setphone] = useState<string>("");
-  const { user, setUser } = useContext(userContext);
+
   const [info, setInfo] = useState<IVerification.IState>({
     login: false,
     title: "Please enter personal information",
@@ -50,8 +49,6 @@ export const index: React.FunctionComponent<IVerification.IProps> = ({
       })
       .then(data => {
         console.log(data.code);
-        window.localStorage.setItem("userid", data.userid);
-        window.localStorage.setItem("username", data.username);
         localStorage.setItem("OTP", data.code);
       });
   };
@@ -69,8 +66,6 @@ export const index: React.FunctionComponent<IVerification.IProps> = ({
       return;
     } else {
       localStorage.removeItem("OTP");
-      setUser(phone);
-      window.localStorage.setItem("phone", phone);
       changePageHandler(3);
     }
   };

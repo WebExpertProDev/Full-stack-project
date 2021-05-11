@@ -9,12 +9,7 @@ declare namespace IMobileFilterMenu {
     setRoom?: Function;
     currentRoom?: any;
     submitFilter?: Function;
-    bathroomCount;
-    currentBathroom;
-    parkingCount;
-    setfilterOptions;
-    currentParking;
   }
 }
 
-export { IMobileFilterMenu };
+export type { IMobileFilterMenu };

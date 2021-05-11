@@ -15,23 +15,7 @@
     }
     
   }
-  .input-form{
-    width: 55%;
-    
-    margin-bottom: rem($spacing-l);
-    @media(max-width:991px){
-      width: 75%;
-    }
-    @media(max-width:770px){
-      width: 90%;
-    }
-    label{
-    font-size: rem(15);
-    font-family: Regular;
-    color:$greyish-brown;
-    
-    }
-  }
+  
   .Nearby{
       .Nearby-radio{
           margin-top:rem($spacing-m);
@@ -52,43 +36,7 @@
        }
          }
       }
-      .selectInput{
-        margin-top:rem($spacing-m);
-       // width: 33%;
-        display: flex;
-        align-items: center;
-        @media(max-width:768px){
-          font-size:rem(13);
-        }
-        @media(max-width:576px){
-          font-size:rem(15);
-          
-        }
-        p{
-            font-size:rem(15);
-            color:#908F91;
-            font-family: Regular;
-            margin-left: 0.3rem;
-            margin-bottom: 0;
-        }
-        .label{
-          margin:0;
-          margin-left:rem($spacing-xxs-1);
-          cursor: pointer;
-          font-size: rem(15);      
-          font-family: Regular;
-          color:$greyish-brown;
-      }
-        input{
-          margin-right:rem($spacing-xxs-1);
-          filter: saturate(6);
-            // width: 24px;
-            // height: 24px;
-            border-radius: 5px;
-            border: $warm-grey;
-        }
-        
-      }
+
     &:nth-child(2){
         border-left:1px solid $like-white;
         border-right:1px solid $like-white;

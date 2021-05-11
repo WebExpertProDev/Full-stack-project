@@ -5,4 +5,4 @@ declare namespace IAuth {
   }
 }
 
-export { IAuth };
+export type { IAuth };

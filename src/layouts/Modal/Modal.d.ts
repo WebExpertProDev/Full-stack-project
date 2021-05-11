@@ -7,4 +7,4 @@ declare namespace IModal {
   }
 }
 
-export { IModal };
+export type { IModal };

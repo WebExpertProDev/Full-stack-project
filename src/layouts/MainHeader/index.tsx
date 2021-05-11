@@ -35,6 +35,7 @@ import Logo from "./svg/logo.svg";
 // styles
 import styles from "./styles/styles.module.scss";
 import { useRouter } from "next/router";
+import { request } from "https";
 
 function addSegmentScript() {
   if (typeof window !== "undefined") {
@@ -68,43 +69,23 @@ const MainHeader: React.FunctionComponent<IHeader.IProps> = ({ Theme }) => {
   }
 
   const onSignOut = () => {
-    if (window.localStorage.getItem("email") != null) {
-      //signout with email
-      const signOutRequest = new Request(
-        "http://localhost:5000/api/externaluser/signout",
-        {
-          method: "POST",
-          body: JSON.stringify({ email: window.localStorage.getItem("email"),
-          username: window.localStorage.getItem("username")}),
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-          }
+    const signOutRequest = new Request(
+      "http://localhost:5000/api/user/signOut",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          username: window.localStorage.getItem("username"),
+          phone: window.localStorage.getItem("phone")
+        }),
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
         }
-      );
-      fetch(signOutRequest)
-      window.localStorage.clear();
-      router.reload();
-      return;
-    } else {
-      const signOutRequest = new Request(
-        "http://localhost:5000/api/user/signOut",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            username: window.localStorage.getItem("username"),
-            phone: window.localStorage.getItem("phone")
-          }),
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      fetch(signOutRequest);
-      window.localStorage.clear();
-      router.reload();
-    }
+      }
+    );
+    fetch(signOutRequest);
+    window.localStorage.clear();
+    router.reload();
   };
 
   const SignInButton: React.FunctionComponent = () => (

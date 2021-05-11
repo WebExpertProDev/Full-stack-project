@@ -3,12 +3,10 @@ declare namespace IMap {
     latitude: Number;
     longitude: Number;
     json;
-    locationchange;
-    locationcurrent;
     // height?: string;
     // width?: string;
     mapMarkers?: any;
   }
 }
 
-export { IMap };
+export type { IMap };

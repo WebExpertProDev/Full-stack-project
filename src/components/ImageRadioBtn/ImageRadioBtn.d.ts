@@ -3,9 +3,7 @@ declare namespace IImageRadioBtn {
     Image: string;
     handleClick?: Function;
     active?: boolean;
-    inputName: string;
-    checked?: boolean;
   }
 }
 
-export { IImageRadioBtn };
+export type { IImageRadioBtn };

@@ -2,4 +2,4 @@ declare namespace IHomePage {
   export interface IProps {}
 }
 
-export { IHomePage };
+export type { IHomePage };

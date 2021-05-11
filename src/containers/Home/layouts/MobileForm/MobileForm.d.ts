@@ -2,4 +2,4 @@ declare namespace IMobileForm {
   export interface IProps {}
 }
 
-export { IMobileForm };
+export type { IMobileForm };

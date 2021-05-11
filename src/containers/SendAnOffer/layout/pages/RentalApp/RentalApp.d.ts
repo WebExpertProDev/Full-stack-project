@@ -2,4 +2,4 @@ declare namespace IRentalApp {
   export interface IProps {}
 }
 
-export { IRentalApp };
+export type { IRentalApp };

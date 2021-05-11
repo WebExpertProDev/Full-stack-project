@@ -1,7 +1,5 @@
 declare namespace IFeature {
-  export interface IProps {
-    detail?: any;
-  }
+  export interface IProps {}
 }
 
-export { IFeature };
+export type { IFeature };

@@ -12,7 +12,7 @@ import Select from "@Components/Select";
 // eslint-disable-next-line import/no-unresolved
 import {
   filterHouseType,
-  filterNumbers
+  filterHouseRoom
 } from "../../../../staticData/Listing/data";
 
 // hooks
@@ -36,48 +36,42 @@ import styles from "./styles/Filters.module.scss";
 import Search from "./svg/search.svg";
 
 export const Filters: React.FunctionComponent<IFilters.IProps> = ({
-  filterHandler,
-  setShowMap
+  filterHandler
 }) => {
   const [moreFilters, setMoreFilters] = useState<boolean>(false);
   const [moreMobileFilters, setMoreMobileFilters] = useState<boolean>(false);
   const [filterOptions, setfilterOptions] = useState<any>([]);
+  const [city, setCity] = useState<any>();
 
   // const [minPrice, setminPrice] = useState<number>(1000);
   // const [maxPrice, setmaxPrice] = useState<number>(2000);
-  // useEffect(() => {
-  //   var json = JSON.parse(localStorage.getItem("info"));
-  //   //Note I change the below. It was json.city.title !== null before
-  //   if (json !== null) {
-  //     setCity(json.city.title);
-  //   }
-  // }, []);
+  useEffect(() => {
+    var json = JSON.parse(localStorage.getItem("info"));
+    if (json.city.title !== null) {
+      setCity(json.city.title);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   if (city !== null) {
-  //     filterBySearch(city);
-  //     searchHandler();
-  //   }
-  // }, [city]);
-  //Note I change the below. It was json.city.title !== null before
+  useEffect(() => {
+    if (city !== null) {
+      filterBySearch(city);
+      searchHandler();
+    }
+  }, [city]);
 
   const { formFields, createChangeHandler } = useFormFields({
     search: "",
-    type: filterHouseType[1],
-    roomCount: filterNumbers[0],
-    bathroomCount: filterNumbers[0],
-    parkingCount: filterNumbers[0],
+    type: filterHouseType[0],
+    roomCount: filterHouseRoom[1],
+    bathroomCount: 1,
+    parkingCount: 1,
     minPrice: 0,
-    maxPrice: 0,
-    utilities: []
+    maxPrice: 0
   });
 
   const changeOptions = options => {
     setfilterOptions(options);
   };
-  useEffect(() => {
-    console.log(formFields);
-  }, [formFields.maxPrice]);
 
   const searchHandler = () => {
     console.log(filterOptions);
@@ -90,20 +84,6 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
   };
   const [btnTitle, setBtnTitle] = useState("filter");
 
-  useEffect(() => {
-    if (localStorage.getItem("info") !== null) {
-      var json = JSON.parse(localStorage.getItem("info"));
-      if (json !== null) {
-        console.log(json);
-        filterBySearch(json.city.title);
-        if (json.type !== undefined && json.type.title === "Buy") {
-          createChangeHandler("type")(json.type);
-        }
-        localStorage.removeItem("info");
-      }
-    }
-  }, []);
-
   return (
     <>
       <section className={styles["filter-section"]}>
@@ -111,13 +91,13 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
           <div className={styles.wrapperFilter}>
             <div className={styles.inputWrapper}>
               {/* {formFields.roomCount ? formFields.roomCount.title : null}
-               {formFields.type ? formFields.type.title : null}
-               {formFields.search}
-               {formFields.minPrice}
-               {formFields.maxPrice} */}
+              {formFields.type ? formFields.type.title : null}
+              {formFields.search}
+              {formFields.minPrice}
+              {formFields.maxPrice} */}
               <Input
                 value={formFields.search}
-                change={filterBySearch}
+                change={v => filterBySearch(v)}
                 theme="default"
                 type="text"
                 placeholder="Los Angeles"
@@ -127,21 +107,19 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
             <div className={styles.switchWrappers}>
               <div className={styles.selectWrapper}>
                 {/* {formFields.type.title} */}
-                <div className={styles.label}>Type</div>
                 <Select
                   defaultSelected={formFields.type.title}
                   selectOnChange={createChangeHandler("type")}
                   options={filterHouseType}
+                  label="Rent"
                   theme="dd-wrapper-secondary"
-                  label="rent"
                 />
               </div>
               <div className={styles.selectWrapper}>
-                <div className={styles.label}> Beds </div>
                 <Select
-                  defaultSelected="All"
+                  defaultSelected="Beds"
                   selectOnChange={createChangeHandler("roomCount")}
-                  options={filterNumbers}
+                  options={filterHouseRoom}
                   label="Beds"
                   theme="dd-wrapper-secondary"
                 />
@@ -149,23 +127,21 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
               <div className={styles.selectWrapper}>
                 {/* <Select label="Min price" theme="dd-wrapper-secondary" /> */}
                 {/* <InputNumber change={createChangeHandler('minPrice')} value={formFields.minPrice} /> */}
-                <div className={styles.label}> Bathrooms</div>
                 <Select
-                  defaultSelected="All"
+                  defaultSelected="Bathroom"
                   selectOnChange={createChangeHandler("bathroomCount")}
-                  options={filterNumbers}
-                  label="Bathroom"
+                  options={filterHouseRoom}
+                  label="Beds"
                   theme="dd-wrapper-secondary"
                 />
               </div>
               <div className={styles.selectWrapper}>
                 {/* <InputNumber change={createChangeHandler('maxPrice')} value={formFields.maxPrice} /> */}
-                <div className={styles.label}>Parking</div>
                 <Select
-                  defaultSelected="All"
+                  defaultSelected="Parking"
                   selectOnChange={createChangeHandler("parkingCount")}
-                  options={filterNumbers}
-                  label="Parking"
+                  options={filterHouseRoom}
+                  label="Bath"
                   theme="dd-wrapper-secondary"
                 />
               </div>
@@ -210,7 +186,6 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
               height="47px"
               font="13px"
               borderRadius="0px"
-              handleClick={() => setShowMap()}
             >
               Hide Map
             </Button>
@@ -243,26 +218,13 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
       {/* backdrop */}
       {moreMobileFilters && (
         <MobileFilterMenu
-          setParkingCount={createChangeHandler("parkingCount")}
-          setBedroomCount={createChangeHandler("roomCount")}
-          setType={createChangeHandler("type")}
-          setBathroomCount={createChangeHandler("bathroomCount")}
-          setMaxprice={createChangeHandler("maxPrice")}
-          setMinprice={createChangeHandler("minPrice")}
-          setSearch={createChangeHandler("search")}
-          formFields={formFields}
-          setfilterOptions={(options, v) => createChangeHandler(options)(v)}
-          filterNumbers={filterNumbers}
+          filterHouseRoom={filterHouseRoom}
           filterHouseType={filterHouseType}
           setRoom={createChangeHandler("roomCount")}
           currentRoom={formFields.roomCount}
           houseType={formFields.type}
           setHouseType={createChangeHandler("type")}
           setSearch={createChangeHandler("search")}
-          parkingCount={createChangeHandler("parkingCount")}
-          currentParking={formFields.parkingCount}
-          bathroomCount={createChangeHandler("bathroomCount")}
-          currentBathroom={formFields.bathroomCount}
           search={formFields.search}
           submitFilter={searchHandler}
           minPrice={formFields.minPrice}
@@ -272,9 +234,7 @@ export const Filters: React.FunctionComponent<IFilters.IProps> = ({
         />
       )}
       {moreFilters && (
-        <MoreFilters
-          setfilterOptions={(options, v) => createChangeHandler(options)(v)}
-        />
+        <MoreFilters setfilterOptions={options => changeOptions(options)} />
       )}
     </>
   );

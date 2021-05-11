@@ -4,40 +4,22 @@
  * Slider
  *
  */
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
-import useWindowSize from "@Services/hooks/useWindowSize";
-// import image from '../../../../../public/static/images/building.png';
-import Arrow from "./svg/arrow-3.svg";
-import { LightgalleryItem } from "react-lightgallery";
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation } from 'swiper';
+import useWindowSize from '@Services/hooks/useWindowSize';
+import image from '../../../../../public/static/images/building.png';
+import Arrow from './svg/arrow-3.svg';
 // import Modal from '../../../../layouts/Modal';
 // InterFaces
-import { ISlider } from "./Slider";
+import { ISlider } from './Slider';
 
 // styles
-import styles from "./styles/Slider.module.scss";
+import styles from './styles/Slider.module.scss';
 
-export const Slider: React.FunctionComponent<ISlider.IProps> = ({ detail }) => {
-  // detail.image = [
-  //   'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1459535653751-d571815e906b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1522050212171-61b01dd24579?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1459535653751-d571815e906b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-  // ];
-  const images = detail.image;
-  images.forEach((item, index) => {
-    if (item.slice(0, 4) !== "http") {
-      images[index] = "http://localhost:5000" + item;
-    }
-  });
+export const Slider: React.FunctionComponent<ISlider.IProps> = () => {
   SwiperCore.use([Navigation]);
   const [isOpen, setIsOpen] = useState(false);
-
-  // hard code data starts
   // const images = [
   //   'https://www.livinspaces.net/wp-content/uploads/2019/09/House-Desai-25_Metropole-Architects.jpg',
   //   'https://www.realestate.com.au/blog/images/800x500-fit,progressive/2019/08/19163753/beechwood-home.jpg',
@@ -47,9 +29,15 @@ export const Slider: React.FunctionComponent<ISlider.IProps> = ({ detail }) => {
   //   image,
   //   'https://www.realestate.com.au/blog/images/800x500-fit,progressive/2019/08/19163753/beechwood-home.jpg',
   // ];
-
-  // hard code data ends
-
+  const images = [
+    'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1459535653751-d571815e906b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1522050212171-61b01dd24579?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1459535653751-d571815e906b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+  ];
   const size = useWindowSize();
   return (
     <div className={styles.carousel}>
@@ -76,22 +64,12 @@ export const Slider: React.FunctionComponent<ISlider.IProps> = ({ detail }) => {
         </div>
       </Modal> */}
       <Arrow className={styles.arrow} onClick={() => setIsOpen(!isOpen)} />
-      <Swiper
-        spaceBetween={0}
-        slidesPerView={size > 600 ? 3 : 1}
-        navigation
-        autoplay
-      >
-        {images.map((img, index) => {
-          console.log(images);
-          return (
-            <SwiperSlide key={index}>
-              <LightgalleryItem group="any" src={img}>
-                <img src={img} alt="" className={styles["img-slider"]} />
-              </LightgalleryItem>
-            </SwiperSlide>
-          );
-        })}
+      <Swiper spaceBetween={0} slidesPerView={size > 600 ? 3 : 1} navigation autoplay>
+        {images.map((img, index) => (
+          <SwiperSlide key={index}>
+            <img src={img} alt="" className={styles['img-slider']} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

@@ -30,7 +30,6 @@
       }
       .inputWrapper {
         width: 40%;
-        margin-top: rem($spacing-s);
 
         @media (max-width: 1200px) {
           width: 45%;
@@ -50,11 +49,6 @@
         width: 44%;
         .selectWrapper{
           width: 110px;
-          margin-left: rem($spacing-xxs);
-          color:grey;
-          font-family: "Segoe UI";
-        }
-        .label {
           margin-left: rem($spacing-xxs);
         }
         @media (max-width: 1200px) {
@@ -91,7 +85,6 @@
       display: flex;
       width: 22%;
       margin-left: rem($spacing-xxs);
-      margin-top: rem($spacing-s);
       .filterbtn{
         width: 55%;
         height: 37px;

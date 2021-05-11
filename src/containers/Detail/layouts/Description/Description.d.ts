@@ -1,7 +1,5 @@
 declare namespace IDescription {
-  export interface IProps {
-    detail?: any;
-  }
+  export interface IProps {}
 }
 
-export { IDescription };
+export type { IDescription };

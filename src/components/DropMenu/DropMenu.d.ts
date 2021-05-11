@@ -7,4 +7,4 @@ declare namespace IDropDown {
   }
 }
 
-export { IDropDown };
+export type { IDropDown };

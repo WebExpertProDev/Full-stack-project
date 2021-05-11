@@ -4,4 +4,4 @@ declare namespace INewOffer {
   }
 }
 
-export { INewOffer };
+export type { INewOffer };

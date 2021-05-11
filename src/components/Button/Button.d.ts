@@ -10,7 +10,7 @@ declare namespace IButton {
     handleClick?: any;
     height?: string;
     font?: string;
-    fontweight?: string;
+    // fontweight?: string;
     borderRadius?: string;
     border?: string;
     fontFamily?: string;

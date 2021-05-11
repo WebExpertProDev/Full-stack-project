@@ -5,30 +5,28 @@
  * Input
  *
  */
-import React from "react";
+import React from "react"
 
 // InterFaces
-import { IInput } from "./Input";
+import { IInput } from "./Input"
 
 // styles
-import styles from "./styles/input.module.scss";
+import styles from "./styles/input.module.scss"
 
 // eslint-disable-next-line object-curly-newline
 const Input: React.FunctionComponent<IInput.IProps> = ({
-  name,
   type,
   id,
   label,
   hasIcon,
   theme,
-  accept,
   placeholder,
   change,
   value,
   error,
   ...props
 }) => {
-  const haveLabel = theme === "default" && label;
+  const haveLabel = theme === "default" && label
   return (
     <>
       <div className={styles[`input-${theme}-container`]}>
@@ -39,12 +37,10 @@ const Input: React.FunctionComponent<IInput.IProps> = ({
           </label>
         ) : null}
         <input
-          name={name}
           onChange={e => change(e.target.value)}
           {...props}
           value={value}
           className={`${styles.input} ${error && styles.error}`}
-          accept={accept}
           id={id}
           type={type}
           required
@@ -59,12 +55,12 @@ const Input: React.FunctionComponent<IInput.IProps> = ({
         {hasIcon ? <span className={styles.inputIcon}>{hasIcon}</span> : null}
       </div>
     </>
-  );
-};
+  )
+}
 
 // default props
 Input.defaultProps = {
-  theme: "material"
-};
+  theme: "material",
+}
 
-export default Input;
+export default Input

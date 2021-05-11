@@ -1,8 +1,5 @@
 declare namespace IMobileMoreFilters {
-  export interface IProps {
-    setfilterOptions;
-    submitFilter?: Function;
-  }
+  export interface IProps {}
 }
 
-export { IMobileMoreFilters };
+export type { IMobileMoreFilters };

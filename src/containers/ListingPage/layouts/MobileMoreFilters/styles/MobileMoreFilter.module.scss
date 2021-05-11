@@ -22,18 +22,6 @@ z-index: $mobile-more-filters-z-index;
         height: 34px;
     }
 }
-.morefilteractive{
-    font-size: rem(11);
-    font-family: Regular;
-    color:$turquoise-blue;
-    margin-top: rem($spacing-s);
-   
-    svg{
-        width: 34px;
-        height: 34px;
-    }
-}
-
 .more-filter-btn{
    position: absolute;
    bottom: 0;

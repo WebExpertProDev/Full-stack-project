@@ -1,7 +1,5 @@
 declare namespace ISlider {
-  export interface IProps {
-    detail?: any;
-  }
+  export interface IProps {}
 }
 
-export { ISlider };
+export type { ISlider };

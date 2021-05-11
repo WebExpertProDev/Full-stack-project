@@ -7,4 +7,4 @@ declare namespace ICalender {
   }
 }
 
-export { ICalender };
+export type { ICalender };

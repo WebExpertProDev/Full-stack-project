@@ -3,64 +3,52 @@
  * LineChart
  *
  */
-import React from "react";
+import React from 'react';
 
 // eslint-disable-next-line object-curly-newline
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 // styles
-import { Container } from "react-bootstrap";
+import { Container } from 'react-bootstrap';
 
 // InterFaces
-import useWindowSize from "@Services/hooks/useWindowSize";
-import { ILineChart } from "./LineChart";
+import useWindowSize from '@Services/hooks/useWindowSize';
+import { ILineChart } from './LineChart';
 
 // Hooks
 
 // import styles from './styles/Historical.module.scss';
 
-var data = [
+const data = [
   {
-    name: "2016",
+    name: '2016',
     uv: 4000,
     pv: 2400,
-    amt: 2400
+    amt: 2400,
   },
   {
-    name: "2017",
+    name: '2017',
     uv: 3000,
     pv: 1398,
-    amt: 2210
+    amt: 2210,
   },
 
   {
-    name: "2020",
+    name: '2020',
     uv: 280,
     pv: 308,
-    amt: 2000
-  }
+    amt: 2000,
+  },
 ];
 
 const renderCustomAxisTick = ({ x, y, payload }) => (
-  <text
-    style={{ font: "12px semiLightFont" }}
-    x={x - 12}
-    y={y + 19}
-    fill="#666"
-    textAnchor="middle"
-  >
+  <text style={{ font: '12px semiLightFont' }} x={x - 12} y={y + 19} fill="#666" textAnchor="middle">
     {payload.value}
   </text>
 );
 
 const renderCustomYAxisTick = ({ x, y, payload }) => (
-  <text
-    style={{ font: "12px semiLightFont" }}
-    x={x - 12}
-    y={y + 2}
-    fill="#666"
-    textAnchor="middle"
-  >
+  <text style={{ font: '12px semiLightFont' }} x={x - 12} y={y + 2} fill="#666" textAnchor="middle">
     {payload.value}
   </text>
 );
@@ -70,22 +58,12 @@ const renderCustomYAxisTick = ({ x, y, payload }) => (
 //     <circle cx="50" cy="50" r="400" stroke="black" strokeWidth="3" fill="red" />
 //   </svg>
 // );
-export const CustomLineChart: React.FunctionComponent<ILineChart.IProps> = ({
-  responsiveSize,
-  amount,
-  width
-}) => {
-  const size = width ? width : useWindowSize();
+export const CustomLineChart: React.FunctionComponent<ILineChart.IProps> = ({ responsiveSize }) => {
+  const size = useWindowSize();
+
   // const [screenSizeW] = useState<number>(size < 900 ? 300 : 700);
 
   const sizeHandler = () => {
-    if (amount) {
-      data[0].uv = amount[0];
-      data[1].uv = amount[1];
-      data[2].uv = amount[2];
-      //  console.log(data)
-    }
-
     // Responsive breakpoint
     const lessThan600 = size < 600;
     const lessThan850 = size < 850;
@@ -114,15 +92,15 @@ export const CustomLineChart: React.FunctionComponent<ILineChart.IProps> = ({
   return (
     <section>
       <Container>
-        <LineChart width={sizeHandler()} height={275} data={data}>
+        <LineChart width={sizeHandler()} height={300} data={data}>
           <Line
             strokeWidth={4}
             dot={{
-              stroke: "#f6f6f6",
+              stroke: '#f6f6f6',
               strokeWidth: 5,
-              fill: "#00bbd8",
+              fill: '#00bbd8',
               r: 8,
-              filter: 'drop-shadow( 3px 3px 2px rgba("0, 0, 0, .7"))'
+              filter: 'drop-shadow( 3px 3px 2px rgba("0, 0, 0, .7"))',
             }}
             type="monotone"
             dataKey="uv"

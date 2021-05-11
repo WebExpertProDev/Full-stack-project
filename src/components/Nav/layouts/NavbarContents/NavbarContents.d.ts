@@ -2,4 +2,4 @@ declare namespace INavbarContents {
     export interface IProps {}
 }
 
-export { INavbarContents }
+export type { INavbarContents }

@@ -8,4 +8,4 @@ declare namespace IPaginator {
   }
 }
 
-export { IPaginator };
+export type { IPaginator };

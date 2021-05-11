@@ -3,9 +3,8 @@
  * Privacy
  *
  */
-import React, { useState, useContext } from "react";
-import { useRouter } from "next/router";
-import userContext from "../../../context/userContext";
+import React, { useState } from "react";
+
 // styles
 import Styles from "./styles/Privacy.module.scss";
 
@@ -13,123 +12,49 @@ import Styles from "./styles/Privacy.module.scss";
 import Button from "../../../components/Button";
 import Verification from "../Verification";
 import { IPrivacy } from "./Privacy";
-
 export const Privacy: React.FunctionComponent<IPrivacy.IProps> = ({
   phoneNum,
   name,
-  DeclinePrivacy,
-  useEmail,
-  cleanName,
-  cleanPhone, type
+  DeclinePrivacy
 }) => {
   const [showPrivacy, setShowPrivacy] = useState<Boolean>(false);
   const [acceptConditions, setAcceptConditions] = useState<Boolean>(false);
-  const { user, setUser } = useContext(userContext);
-  const router = useRouter();
   const Decline = () => {
     DeclinePrivacy(false);
-    cleanName("");
-    cleanPhone("");
     return;
   };
   const changePage = () => {
-      if (useEmail) {
-        console.log("using email")
-        //connect with backend and sign up
-        const request = new Request(
-          "http://localhost:5000/api/externaluser/signup",
-          {
-            method: "POST",
-            body: JSON.stringify({ userType: type, email: phoneNum,
-            username: name}),
-            headers: {
-              Accept: "application/json, text/plain, */*",
-              "Content-Type": "application/json"
-            }
+    if (acceptConditions == true) {
+      const request = new Request(
+        "http://localhost:5000/api/sendCode/getPhone",
+        {
+          method: "POST",
+          body: JSON.stringify({ phone: phoneNum }),
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
           }
-        );
-        fetch(request)
-          .then(res => {
-            console.log(res.status);
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              console.log("errno"+res.status);
-              return;
-            }
-          })
-          .then(data => {
-            console.log("feed back from signin:" + data);
+        }
+      );
+      fetch(request)
+        .then(res => {
+          console.log("sent to " + phoneNum);
+          console.log(res.status);
+          if (res.status === 200) {
+            return res.json();
+          } else {
+            console.log("errno");
             return;
-          })
-          .catch(err => console.log("error"));
-          //email Sign Up
-          const signInrequest = new Request(
-            "http://localhost:5000/api/externaluser/signin",
-            {
-              method: "POST",
-              body: JSON.stringify({ email: phoneNum,
-              username: name}),
-              headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json"
-              }
-            }
-          );
-          fetch(signInrequest)
-            .then(res => {
-              console.log(res.status);
-              if (res.status === 200) {
-                return res.json();
-              } else {
-                console.log("errno"+res.status);
-                return;
-              }
-            })
-            .then(data => {
-              console.log("feed back from signin:" + data);
-              window.localStorage.setItem("userid", data.userid);
-             // setShowPrivacy(true);
-              return;
-            })
-            .catch(err => console.log("error"));
-        setUser(phoneNum);
-        window.localStorage.setItem("email", phoneNum);
-        window.localStorage.setItem("username", name);
-        console.log(user);
-        router.reload();
-      } else {
-        const request = new Request(
-          "http://localhost:5000/api/sendCode/getPhone",
-          {
-            method: "POST",
-            body: JSON.stringify({ phone: phoneNum }),
-            headers: {
-              Accept: "application/json, text/plain, */*",
-              "Content-Type": "application/json"
-            }
           }
-        );
-        fetch(request)
-          .then(res => {
-            console.log("sent to " + phoneNum);
-            console.log(res.status);
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              console.log("errno");
-              return;
-            }
-          })
-          .then(data => {
-            console.log("feed back from signin:" + data.code);
-            localStorage.setItem("OTP", data.code);
-            setShowPrivacy(true);
-            return;
-          })
-          .catch(err => console.log("error"));
-      }
-  
+        })
+        .then(data => {
+          console.log("feed back from signin:" + data.code);
+          localStorage.setItem("OTP", data.code);
+          setShowPrivacy(true);
+          return;
+        })
+        .catch(err => console.log("error"));
+    }
   };
   return (
     <>
@@ -199,8 +124,13 @@ export const Privacy: React.FunctionComponent<IPrivacy.IProps> = ({
               <p>Accept terms and conditions</p>
             </div>
             <div className={Styles.groupBtn}>
+              <div className={Styles.declineBtn}>
+                <Button theme="outline" handleClick={Decline}>
+                  Decline
+                </Button>
+              </div>
               <div className={Styles.acceptBtn}>
-                <Button theme="primary" handleClick={changePage} disabled={!acceptConditions}>
+                <Button theme="primary" handleClick={changePage}>
                   Accept
                 </Button>
               </div>

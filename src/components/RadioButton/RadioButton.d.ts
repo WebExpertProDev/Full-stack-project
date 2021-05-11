@@ -10,4 +10,4 @@ declare namespace IRadioButton {
   }
 }
 
-export { IRadioButton };
+export type { IRadioButton };

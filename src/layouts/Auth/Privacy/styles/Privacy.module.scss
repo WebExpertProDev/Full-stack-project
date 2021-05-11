@@ -47,20 +47,20 @@
     margin-left:1.5rem;
     justify-content: space-between;
   
-    // .declineBtn{
-    //     width: 45%;
-    //     margin-left:3.4rem;
-    //     button{
-    //         height: 48px;
-    //         font-size: rem(15);
-    //         font-family: SemiBoldFont;
-    //     }
-    // }
-    .acceptBtn{
-        width:100%;
+    .declineBtn{
+        width: 45%;
+        margin-left:3.4rem;
         button{
             height: 48px;
-            font-size: rem(17);
+            font-size: rem(15);
+            font-family: SemiBoldFont;
+        }
+    }
+    .acceptBtn{
+        width:35%;
+        button{
+            height: 48px;
+            font-size: rem(15);
             font-family: SemiBoldFont;
         }
     }

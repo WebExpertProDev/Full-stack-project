@@ -10,4 +10,4 @@ declare namespace IChooseDate {
   }
 }
 
-export { IChooseDate };
+export type { IChooseDate };

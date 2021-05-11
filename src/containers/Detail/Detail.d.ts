@@ -2,4 +2,4 @@ declare namespace IDetail {
   export interface IProps {}
 }
 
-export { IDetail };
+export type { IDetail };

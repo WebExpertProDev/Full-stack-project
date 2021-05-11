@@ -1,7 +1,5 @@
 declare namespace IOverview {
-  export interface IProps {
-    detail?: any;
-  }
+  export interface IProps {}
 }
 
-export { IOverview };
+export type { IOverview };

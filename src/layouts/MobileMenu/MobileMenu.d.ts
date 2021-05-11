@@ -4,4 +4,4 @@ declare namespace IMobileMenu {
   }
 }
 
-export { IMobileMenu };
+export type { IMobileMenu };

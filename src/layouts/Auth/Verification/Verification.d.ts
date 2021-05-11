@@ -6,4 +6,4 @@ declare namespace IVerification {
   }
 }
 
-export { IVerification };
+export type { IVerification };

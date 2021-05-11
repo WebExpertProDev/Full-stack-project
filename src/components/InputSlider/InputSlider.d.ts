@@ -7,4 +7,4 @@ declare namespace IInputSlider {
   }
 }
 
-export { IInputSlider };
+export type { IInputSlider };

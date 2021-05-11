@@ -3,8 +3,7 @@ declare namespace IRadialNumberInput {
     max?: number;
     onChange?: Function;
     currentCount?: any;
-    valueChange?: number;
   }
 }
 
-export { IRadialNumberInput };
+export type { IRadialNumberInput };

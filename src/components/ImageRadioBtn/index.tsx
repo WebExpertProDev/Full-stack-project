@@ -3,39 +3,26 @@
  * ImageRadioBtn
  *
  */
-import React from "react";
-import ClassNames from "classnames";
+import React from 'react';
+import ClassNames from 'classnames';
 // components
-import RadioButton from "@Components/RadioButton";
+import RadioButton from '@Components/RadioButton';
 
 // InterFaces
 
-import { IImageRadioBtn } from "./ImageRadioBtn";
+import { IImageRadioBtn } from './ImageRadioBtn';
 
 // styles
-import styles from "./styles/ImgaeRadio.module.scss";
+import styles from './styles/ImgaeRadio.module.scss';
 
 const ImageRadioBtn: React.FunctionComponent<IImageRadioBtn.IProps> = ({
-  Image,
-  handleClick,
-  active,
-  inputName,
-  checked
+ Image, handleClick, active, inputName 
 }) => {
-  const classes = ClassNames(styles["image-radio"], { active });
+  const classes = ClassNames(styles['image-radio'], { active });
   return (
-    <div
-      className={classes}
-      style={{ backgroundImage: `url("${Image}")` }}
-      onClick={() => handleClick}
-    >
-      <div className={styles["radio-btn"]}>
-        <RadioButton
-          name={inputName}
-          inputType="radioButton"
-          isChecked={checked}
-          handleChange={handleClick}
-        />
+    <div className={classes} style={{ backgroundImage: `url("${Image}")` }} onClick={() => handleClick}>
+      <div className={styles['radio-btn']}>
+        <RadioButton name={inputName} inputType="radioButton" />
       </div>
     </div>
   );

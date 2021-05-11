@@ -4,4 +4,4 @@ declare namespace IOfferExpand {
   }
 }
 
-export { IOfferExpand };
+export type { IOfferExpand };

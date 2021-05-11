@@ -1,8 +1,5 @@
 declare namespace INumberInput {
-  export interface IProps {
-    value: number;
-    setValue: any;
-  }
+  export interface IProps {}
 }
 
-export { INumberInput };
+export type { INumberInput };

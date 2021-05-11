@@ -2,4 +2,4 @@ declare namespace ICheckoutPage {
   export interface IProps {}
 }
 
-export { ICheckoutPage };
+export type { ICheckoutPage };

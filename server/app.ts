@@ -41,3 +41,5 @@ const signale = new Signale(options);
 
   signale.success(`> Server listening at http://localhost:${port} as ${dev ? 'development' : process.env.NODE_ENV}`);
 })();
+
+export {};

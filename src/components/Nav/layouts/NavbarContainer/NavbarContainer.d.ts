@@ -5,4 +5,4 @@ declare namespace IFadeContent {
   export interface IProps {}
 }
 
-export { INavbarContainer, IFadeContent };
+export type { INavbarContainer, IFadeContent };

@@ -3,114 +3,25 @@
  * SignIn
  *
  */
-import React, { useState, useContext } from "react";
-import { GoogleLogin } from "react-google-login";
-import { useRouter } from "next/router";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import userContext from "../../../context/userContext";
+import React, { useState } from "react";
+
 // components
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+
 // svg
 import Facebook from "../svg/facebook.svg";
 import Google from "../svg/google.svg";
+import HiddenPass from "../svg/eye-slash-solid.svg";
 import Verification from "../Verification";
 // styles
 import Styles from "./styles/SignIn.module.scss";
 
 export const SignIn: React.FunctionComponent = () => {
   const [phone, setPhone] = useState<string>("");
-  const router = useRouter();
+  // const [password, setPassword] = useState<string>("");
   const [showVerification, setShowVerification] = useState<Boolean>(false);
   const [username, setName] = useState<string>("");
-  const clientId = ""; //client id for google project
-  const appid = ""; //appid for facebook project
-  const { user, setUser } = useContext(userContext);
-  const responseGoogle = response => {
-    console.log("Google Login Success");
-    //connect with backend login api
-    const signInrequest = new Request(
-      "http://localhost:5000/api/externaluser/signin",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: response.profileObj.email,
-          username: response.profileObj.name
-        }),
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-        }
-      }
-    );
-    fetch(signInrequest)
-      .then(res => {
-        console.log(res.status);
-        if (res.status === 200) {
-          return res.json();
-        } else {
-          console.log("errno" + res.status);
-          return;
-        }
-      })
-      .then(data => {
-        console.log("feed back from signin:" + data);
-        window.localStorage.setItem("userid", data.userid);
-        // setShowPrivacy(true);
-        return;
-      })
-      .catch(err => console.log("error"));
-    setUser(response.profileObj.email);
-    window.localStorage.setItem("email", response.profileObj.email);
-    window.localStorage.setItem("username", response.profileObj.name);
-    console.log(user);
-    router.reload();
-  };
-
-  const handleLoginFailure = error => {
-    console.log("Google Login Failure ", error);
-  };
-  const responseFacebook = response => {
-    console.log("Facebook Login Success");
-    //connect with backend login api
-    const signInrequest = new Request(
-      "http://localhost:5000/api/externaluser/signin",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: response.email,
-          username: response.name
-        }),
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-        }
-      }
-    );
-    fetch(signInrequest)
-      .then(res => {
-        console.log(res.status);
-        if (res.status === 200) {
-          return res.json();
-        } else {
-          console.log("errno" + res.status);
-          return;
-        }
-      })
-      .then(data => {
-        console.log("feed back from signin:" + data);
-        window.localStorage.setItem("userid", data.userid);
-        // setShowPrivacy(true);
-        return;
-      })
-      .catch(err => console.log("error"));
-    setUser(response.email);
-    window.localStorage.setItem("email", response.email);
-    window.localStorage.setItem("username", response.name);
-    console.log(user);
-    router.reload();
-  };
-
   const handleClick = () => {
     console.log(phone);
     const request = new Request("http://localhost:5000/api/sendCode/getPhone", {
@@ -135,7 +46,6 @@ export const SignIn: React.FunctionComponent = () => {
       .then(data => {
         console.log("feed back from signin:" + data.code);
         localStorage.setItem("OTP", data.code);
-        localStorage.setItem("userid", data.userid);
         setName(data.username);
         setShowVerification(true);
         return;
@@ -155,38 +65,14 @@ export const SignIn: React.FunctionComponent = () => {
         <form className={Styles.form}>
           <p className={Styles.title}>Sign In</p>
           <div className="mb-lg-3 mb-2">
-            <FacebookLogin
-              appId={appid}
-              render={renderProps => (
-                <Button
-                  theme="default"
-                  hasIcon={<Facebook />}
-                  handleClick={renderProps.onClick}
-                >
-                  Sign in with Facebook
-                </Button>
-              )}
-              autoLoad
-              fields="name,email,picture"
-              callback={responseFacebook}
-              icon={<Facebook />}
-            />
+            <Button hasIcon={<Facebook />} theme="default">
+              Sign in with Facebook
+            </Button>
           </div>
           <div className="mb-lg-3 mb-2">
-            <GoogleLogin
-              clientId={clientId}
-              render={renderProps => (
-                <Button
-                  theme="default"
-                  hasIcon={<Google />}
-                  handleClick={renderProps.onClick}
-                >
-                  Sign in with Google
-                </Button>
-              )}
-              onSuccess={responseGoogle}
-              onFailure={handleLoginFailure}
-            />
+            <Button hasIcon={<Google />} theme="default">
+              Sign in with Google
+            </Button>
           </div>
 
           <div className={Styles.divider}>or</div>
@@ -199,6 +85,16 @@ export const SignIn: React.FunctionComponent = () => {
               id="phone"
             />
           </div>
+          {/* <div>
+            <Input
+              change={setPassword}
+              value={password}
+              label="Password"
+              type="Password"
+              hasIcon={<HiddenPass />}
+              id="password"
+            />
+          </div> */}
           <div className="mb-lg-4 mt-lg-4 mb-1 mt-5 h-50 d-flex align-items-end">
             <Button theme="primary" handleClick={handleClick}>
               Sign in

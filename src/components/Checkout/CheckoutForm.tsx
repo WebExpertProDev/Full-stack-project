@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../Button";
+
 import CustomAmountInput from "./CustomAmountInput";
 import StripeTestCards from "./StripeTestCards";
 import styles from "./styles/styles.module.css";
@@ -7,14 +7,13 @@ import getStripe from "./utils/get-stripejs";
 import { fetchPostJSON } from "./utils/api-helpers";
 import { formatAmountForDisplay } from "./utils/stripe-helpers";
 import * as config from "./config";
-import { useRouter } from "next/router";
-const CheckoutForm = ({ amount, Text }) => {
-  const [loading, setLoading] = useState(false);
 
+const CheckoutForm = ({ amount }) => {
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState({
     customAmount: Math.round(config.MAX_AMOUNT / config.AMOUNT_STEP)
   });
-  const router = useRouter();
+
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = e =>
     setInput({
       ...input,
@@ -22,11 +21,6 @@ const CheckoutForm = ({ amount, Text }) => {
     });
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async e => {
-    if (amount == "0") {
-      console.log("Free Plan Selected");
-      router.push("/");
-      return;
-    }
     e.preventDefault();
     setLoading(true);
     // Create a Checkout Session.
@@ -70,14 +64,13 @@ const CheckoutForm = ({ amount, Text }) => {
         onChange={handleInputChange}
       />
       <StripeTestCards /> */}
-      <Button
-        //className={styles.checkoutstylebackground}
+      <button
+        className={styles.checkoutstylebackground}
         type="submit"
         disabled={loading}
-        handleClick={handleSubmit}
       >
-        {Text}
-      </Button>
+        Proceed to Payment
+      </button>
     </form>
   );
 };

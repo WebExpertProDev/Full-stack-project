@@ -4,4 +4,4 @@ declare namespace ISellMyHouse {
     }
 }
 
-export { ISellMyHouse }
+export type { ISellMyHouse }

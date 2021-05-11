@@ -4,4 +4,4 @@ declare namespace INotification {
   }
 }
 
-export { INotification };
+export type { INotification };

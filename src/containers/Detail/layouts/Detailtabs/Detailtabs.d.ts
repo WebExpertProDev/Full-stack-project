@@ -1,7 +1,5 @@
 declare namespace IDetailtabs {
-  export interface IProps {
-    item;
-  }
+  export interface IProps {}
 }
 
-export { IDetailtabs };
+export type { IDetailtabs };

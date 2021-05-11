@@ -2,4 +2,4 @@ declare namespace ISendAnOffer {
   export interface IProps {}
 }
 
-export { ISendAnOffer };
+export type { ISendAnOffer };

@@ -2,4 +2,4 @@ declare namespace INewOfferDate {
   export interface IProps {}
 }
 
-export { INewOfferDate };
+export type { INewOfferDate };

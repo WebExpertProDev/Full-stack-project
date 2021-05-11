@@ -2,4 +2,4 @@ declare namespace IContract {
   export interface IProps {}
 }
 
-export { IContract };
+export type { IContract };

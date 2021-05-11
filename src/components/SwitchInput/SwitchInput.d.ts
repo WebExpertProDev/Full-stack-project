@@ -4,4 +4,4 @@ declare namespace ISwitchInput {
   }
 }
 
-export { ISwitchInput };
+export type { ISwitchInput };

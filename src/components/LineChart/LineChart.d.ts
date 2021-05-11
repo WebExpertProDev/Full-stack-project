@@ -4,4 +4,4 @@ declare namespace ILineChart {
   }
 }
 
-export { ILineChart };
+export type { ILineChart };

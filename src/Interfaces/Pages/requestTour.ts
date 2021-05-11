@@ -2,4 +2,4 @@ declare namespace IRequestTourPage {
   export interface IProps {}
 }
 
-export { IRequestTourPage };
+export type { IRequestTourPage };

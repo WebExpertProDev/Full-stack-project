@@ -5,19 +5,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: rem($spacing-xs);
+  margin-top: rem($spacing-m);
   @media(max-width: 1200px){
       padding:0 15px;
   }
   @media(max-width: 550px){
-    margin-top: rem($spacing-xxs);
+    margin-top: rem($spacing-xs);
   }
-}
-.activeFilter{
-  
-  margin-top: rem($spacing-xxs);
- 
-  
 }
 .results {
   width: 50%;

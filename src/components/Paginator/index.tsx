@@ -34,7 +34,7 @@ export const Paginator: React.FunctionComponent<IPaginator.IProps> = ({
         </span>
       </li>
       {current < 5
-        ? Array.from({ length: count + 1 }, (v, i) => i)
+        ? Array.from({ length: count }, (v, i) => i)
             .slice(1, 10)
             .map(page => (
               <Pagination.Item
@@ -45,7 +45,7 @@ export const Paginator: React.FunctionComponent<IPaginator.IProps> = ({
                 {page}
               </Pagination.Item>
             ))
-        : Array.from({ length: count + 1 }, (v, i) => i)
+        : Array.from({ length: count }, (v, i) => i)
             .slice(current - 4, current + 5)
             .map(page => (
               <Pagination.Item

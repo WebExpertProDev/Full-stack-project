@@ -19,7 +19,7 @@ export const Button: React.FunctionComponent<IButton.IProps> = ({
   handleClick,
   height,
   font,
-  fontweight,
+  // fontweight,
   border,
   borderRadius,
   fontFamily,
@@ -33,7 +33,7 @@ export const Button: React.FunctionComponent<IButton.IProps> = ({
   const localStyle = {
     fontSize: font,
     height,
-    fontWeight: fontweight,
+    // fontWeight: fontweight,
     border,
     borderRadius,
     fontFamily,

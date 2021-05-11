@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 // components
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "@Components/Button";
 import Link from "@Components/Link";
 import RadioButton from "@Components/RadioButton";
-import userContext from "../../../../../context/userContext";
+
 // interface
 import { IChooseCall } from "./ChooseCall";
 
@@ -34,15 +34,6 @@ export const index: React.FunctionComponent<IChooseCall.IProps> = ({
 }) => {
   const address =
     typeof window !== "undefined" ? localStorage.getItem("HomeAddress") : null;
-  const { user, setUser } = useContext(userContext);
-  const changePage = () => {
-    if (user.username == null) {
-      console.log("User not logged in");
-      changePageHandler(3);
-    } else {
-      changePageHandler(4);
-    }
-  };
   return (
     <section className={`${styles.ChooseCall} wow fadeInUp`}>
       <div className="d-flex align-items-center">
@@ -178,7 +169,7 @@ export const index: React.FunctionComponent<IChooseCall.IProps> = ({
                 </div>
               </div>
               <div className="w-100">
-                <Button font="17px" handleClick={changePage}>
+                <Button font="17px" handleClick={() => changePageHandler(4)}>
                   Next
                 </Button>
               </div>

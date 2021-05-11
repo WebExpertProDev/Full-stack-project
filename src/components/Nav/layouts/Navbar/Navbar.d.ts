@@ -10,4 +10,4 @@ declare namespace INavbarItem {
   }
 }
 
-export { INavbar, INavbarItem };
+export type { INavbar, INavbarItem };

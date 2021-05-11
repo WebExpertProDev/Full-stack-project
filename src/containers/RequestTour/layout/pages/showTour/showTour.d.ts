@@ -6,4 +6,4 @@ declare namespace IShowTour {
   }
 }
 
-export { IShowTour };
+export type { IShowTour };

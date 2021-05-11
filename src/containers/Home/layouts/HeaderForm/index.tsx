@@ -77,9 +77,14 @@ export const HeaderForm: React.FunctionComponent<IHeaderForm.IProps> = () => {
                 />
               </div>
 
-              <button type="button" onClick={() => HandleSearch()}>
+              <Button
+                theme="primary"
+                size="md"
+                height="37px"
+                handleClick={() => HandleSearch()}
+              >
                 Search
-              </button>
+              </Button>
             </form>
           )}
         </Col>

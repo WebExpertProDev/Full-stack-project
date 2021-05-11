@@ -2,64 +2,44 @@
 export const filterHouseType = [
   {
     id: 1,
-    title: "Rent"
+    title: 'Rent',
   },
   {
     id: 2,
-    title: "Buy"
-  }
+    title: 'Buy',
+  },
 ];
 
 export const filterHouseRoom = [
   {
     id: 1,
-    title: "1"
+    title: '1',
   },
   {
     id: 2,
-    title: "2"
+    title: '2',
   },
   {
     id: 3,
-    title: "3"
+    title: '3',
   },
   {
     id: 4,
-    title: "4"
-  }
+    title: '4',
+  },
 ];
 
 export const filtersortBy = [
   {
     id: 1,
-    title: "Price"
+    title: 'Price',
   },
   {
     id: 2,
-    title: "beds"
+    title: 'beds',
   },
   {
     id: 3,
-    title: "older"
-  }
-];
-
-export const filterNumbers = [
-  { id: 0, title: "All" },
-  {
-    id: 1,
-    title: "1"
+    title: 'older',
   },
-  {
-    id: 2,
-    title: "2"
-  },
-  {
-    id: 3,
-    title: "3"
-  },
-  {
-    id: 4,
-    title: "4"
-  }
 ];

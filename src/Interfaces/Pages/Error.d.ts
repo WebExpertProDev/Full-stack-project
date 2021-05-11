@@ -8,4 +8,4 @@ declare namespace IErrorPage {
   }
 }
 
-export { IErrorPage };
+export type { IErrorPage };

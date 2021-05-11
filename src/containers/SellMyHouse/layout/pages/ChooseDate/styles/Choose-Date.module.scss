@@ -8,7 +8,7 @@
   color:$greyish-brown;
 }
 .calender{
-  width:120%;
+  width:100%;
   // min-width: 356px;
   height: 280px;
   border-radius: 8px;
@@ -16,9 +16,9 @@
  
 }
 .nextbtn{
- // float: right;
-  margin-top: 120px;
-  width: 120%;
+  float: right;
+  margin-top: 100px;
+  width: 100%;
 
   .cancel{
     svg{

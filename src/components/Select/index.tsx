@@ -9,18 +9,18 @@
  * Select
  *
  */
-import React, { useState } from "react";
-import OutsideClickHandler from "react-outside-click-handler";
+import React, { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 // Types
-import { ISelect } from "./Select";
+import { ISelect } from './Select';
 
 // Styles
-import styles from "./styles/select.module.scss";
+import styles from './styles/select.module.scss';
 
 // svg
-import Arrow from "./svg/arrow.svg";
-import RealState from "./svg/RealEstate.svg";
+import Arrow from './svg/arrow.svg';
+import RealState from './svg/RealEstate.svg';
 
 export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
   theme,
@@ -28,14 +28,12 @@ export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
   autocomplate,
   selectOnChange,
   defaultSelected,
-  hasIcon
+  hasIcon,
 }) => {
   const [listOpen, setListOpen] = useState<boolean>(false);
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>('');
   const [showTextInput, setShowTextInput] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<any>(
-    defaultSelected || options[0].title
-  );
+  const [selectedItem, setSelectedItem] = useState<any>(defaultSelected || options[0].title);
   const [selectedOptions, setSelectedOptions] = useState<any>(options);
 
   // const labelTitle = () => (selectedItem ? selectedItem.title : search);
@@ -58,18 +56,16 @@ export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
   const toggleList = () => {
     setListOpen(!listOpen);
   };
-  const filterTitle = title => {
+  const filterTitle = (title) => {
     const length = 15;
     return title.length > 15 ? `${title.substring(0, length)} ...` : title;
   };
 
   // Filter our suggestions that don't contain the user's input
-  const filteredSuggestions = options.filter(
-    option => option.title.toLowerCase().indexOf(search.toLowerCase()) > -1
-  );
+  const filteredSuggestions = options.filter((option) => option.title.toLowerCase().indexOf(search.toLowerCase()) > -1);
 
   // eslint-disable-next-line consistent-return
-  const searchHandler = value => {
+  const searchHandler = (value) => {
     if (value.length === 0) {
       setSearch(value);
       setListOpen(false);
@@ -101,18 +97,17 @@ export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
     <li
       role="button"
       onKeyDown={() => toggleItem(item)}
-      className={item.svg ? "py-4" : ""}
+      className={item.svg ? 'py-4' : ''}
       key={item.id}
-      onClick={() => toggleItem(item)}
-    >
+      onClick={() => toggleItem(item)}>
       {item.svg && <item.svg className="pr-2" />}
       {item.title}
     </li>
   );
 
   const ListOption: React.FunctionComponent<any> = ({ list }) => (
-    <ul className={styles["dd-list"]}>
-      {list.map(item => (
+    <ul className={styles['dd-list']}>
+      {list.map((item) => (
         <Item item={item} />
       ))}
     </ul>
@@ -125,35 +120,31 @@ export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
         if (listOpen) {
           setListOpen(false);
         }
-      }}
-    >
+      }}>
       <div
         className={styles[theme]}
         role="button"
         tabIndex={0}
         onClick={() => toggleList()}
-        onKeyDown={() => toggleList()}
-      >
+        onKeyDown={() => toggleList()}>
         <div
           tabIndex={0}
           role="button"
           onKeyDown={() => setShowTextInput(true)}
           onClick={() => setShowTextInput(true)}
-          className={styles["dd-header"]}
-        >
+          className={styles['dd-header']}>
           <div
             role="button"
             tabIndex={0}
-            className={styles["dd-header-title"]}
+            className={styles['dd-header-title']}
             onClick={() => toggleList()}
-            onKeyDown={() => toggleList()}
-          >
+            onKeyDown={() => toggleList()}>
             <span className={styles.Icon}>{hasIcon}</span>
             {autocomplate && showTextInput ? (
               <input
                 onClick={() => toggleList()}
                 onKeyDown={() => toggleList()}
-                onChange={e => searchHandler(e.target.value)}
+                onChange={(e) => searchHandler(e.target.value)}
                 autoFocus
                 className={styles.input}
                 type="text"
@@ -164,17 +155,9 @@ export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
           </div>
 
           {listOpen ? (
-            <Arrow
-              className={styles.arrow}
-              onClick={() => toggleList()}
-              onKeyDown={() => toggleList()}
-            />
+            <Arrow className={styles.arrow} onClick={() => toggleList()} onKeyDown={() => toggleList()} />
           ) : (
-            <Arrow
-              className={styles.arrow}
-              onClick={() => toggleList()}
-              onKeyDown={() => toggleList()}
-            />
+            <Arrow className={styles.arrow} onClick={() => toggleList()} onKeyDown={() => toggleList()} />
           )}
         </div>
         {listOpen && <ListOption list={selectedOptions} />}
@@ -185,42 +168,42 @@ export const SelectDropDown: React.FunctionComponent<ISelect.IProps> = ({
 
 // default props
 SelectDropDown.defaultProps = {
-  theme: "dd-wrapper",
+  theme: 'dd-wrapper',
   autocomplate: false,
-  label: "title",
+  label: 'title',
   options: [
     {
       id: 0,
-      title: "Vancouver, BC, Canada",
+      title: 'Vancouver, BC, Canada',
       selected: false,
-      key: "location"
+      key: 'location',
     },
     {
       id: 1,
-      title: "Downtown Vancouver",
+      title: 'Downtown Vancouver',
       selected: false,
-      key: "location"
+      key: 'location',
     },
     {
       id: 2,
-      title: "West Vancouverlifornia",
+      title: 'West Vancouverlifornia',
       selected: false,
-      key: "location"
+      key: 'location',
     },
     {
       id: 3,
-      title: "Nourth Vancouver",
+      title: 'Nourth Vancouver',
       selected: false,
-      key: "location"
+      key: 'location',
     },
     {
       id: 4,
-      title: "Vancouver Regional District ",
+      title: 'Vancouver Regional District ',
       selected: false,
-      key: "location",
-      svg: RealState
-    }
-  ]
+      key: 'location',
+      svg: RealState,
+    },
+  ],
 };
 
 export default SelectDropDown;

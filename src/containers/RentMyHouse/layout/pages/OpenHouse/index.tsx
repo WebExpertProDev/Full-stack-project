@@ -3,118 +3,56 @@
  * OpenHouse
  *
  */
-import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import DatePicker from "react-datepicker";
+import React, { useState } from "react"
+import { Container, Row, Col } from "react-bootstrap"
+import DatePicker from "react-datepicker"
 
 // components
-import Button from "@Components/Button";
-import RadioButton from "@Components/RadioButton";
-import Link from "@Components/Link";
-import Input from "@Components/Input";
+import Button from "@Components/Button"
+import RadioButton from "@Components/RadioButton"
+import Link from "@Components/Link"
+
 // styles
-import styles from "./styles/OpenHouse.module.scss";
+import styles from "./styles/OpenHouse.module.scss"
 
 // InterFaces
-import { IOpenHouse } from "./OpenHouse";
+import { IOpenHouse } from "./OpenHouse"
 
 // assets
-import Cancel from "./svg/cancel.svg";
+import Cancel from "./svg/cancel.svg"
 
-export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
-  changePageHandler,
-  homeInfo,
-  setHomeInfo
-}) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [startTime, setStartTime] = useState<string>("06");
-  const [startMin, setStartMin] = useState<string>("00");
-  const [endTime, setEndTime] = useState<string>("06");
-  const [endMin, setEndMin] = useState<string>("00");
+export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({ changePageHandler }) => {
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(null)
   const onChange = dates => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-  const update = () => {
-    startDate.setHours(parseInt(startTime), parseInt(startMin), parseInt("00"));
-    endDate.setHours(parseInt(endTime), parseInt(endMin), parseInt("00"));
-    setHomeInfo({
-      ...homeInfo,
-      openHouseDate: {
-        start: startDate
-          .setHours(parseInt(startTime), parseInt(startMin), parseInt("00"))
-          .toString(),
-        end: endDate
-          .setHours(parseInt(endTime), parseInt(endMin), parseInt("00"))
-          .toString()
-      }
-    });
-    console.log(homeInfo);
-    //   console.log(startDate.toTimeString())
-    changePageHandler(7);
-  };
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-  const [startAmOrPm, setStartAmOrPm] = useState<string>("am");
-  const [endAmOrPm, setEndAmOrPm] = useState<string>("am");
+    const [start, end] = dates
+    setStartDate(start)
+    setEndDate(end)
+  }
+  const [startAmOrPm, setStartAmOrPm] = useState<string>("startAM")
+  const [endAmOrPm, setEndAmOrPm] = useState<string>("endAM")
+  const [startOrEnd, setstartOrEnd] = useState<string>("start")
   return (
     <section className={`${styles["open-house-section"]} wow fadeInUp`}>
       <Container fluid="lg" className="px-lg-0">
         <Row>
-          <Col
-            lg="6"
-            md="7"
-            sm="10"
-            xs="12"
-            className="d-flex flex-column align-items-start"
-          >
+          <Col lg="6" md="7" sm="10" xs="12" className="d-flex flex-column align-items-start">
             <p className={styles.title}>Open house</p>
           </Col>
         </Row>
 
         <Row className="justify-content-center">
-          <Col
-            lg="6"
-            md="7"
-            sm="10"
-            className="d-flex flex-column align-items-center"
-          >
-            <div
-              className={`${styles.calender} d-flex flex-wrap align-items-center w-100`}
-            >
+          <Col lg="6" md="7" sm="10" className="d-flex flex-column align-items-center">
+            <div className={`${styles.calender} d-flex flex-wrap align-items-center w-100`}>
               <div className={styles["calender-left"]}>
                 <p className={styles["calender-title"]}>Choose Date</p>
                 <div className={styles["calender-container"]}>
                   <DatePicker
-                    //  calendarClassName={styles.calender}
+                    calendarClassName={styles.customcalender}
                     selected={startDate}
                     onChange={onChange}
                     startDate={startDate}
                     endDate={endDate}
-                    minDate={new Date()}
                     selectsRange
                     inline
                   />
@@ -123,55 +61,29 @@ export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
 
               <div
                 className={`${styles.time} d-flex flex-lg-column flex-md-column
-               flex-sm-column flex-row justify-content-lg-center justify-content-md-center justify-content-around ml-3`}
-              >
+               flex-sm-column flex-row justify-content-lg-center justify-content-md-center justify-content-around ml-3`}>
                 <div className={`mt-3 mt-lg-0 mt-md-0 ${styles["start-time"]}`}>
                   <p>Strat Time</p>
                   <div
-                    className={`d-flex flex-column align-items-center justify-content-center  ${styles["time-container"]}`}
-                  >
+                    className={`d-flex flex-column align-items-center justify-content-center  ${styles["time-container"]}`}>
                     <div className="w-100 h-50 d-flex align-items-center justify-content-center">
-                      <input
-                        type="text"
-                        onChange={e => {
-                          let v = e.target.value;
-                          setStartTime(v);
-                        }}
-                        value={startTime}
-                        className={styles.price}
-                      />
-                      <p>:</p>
-                      <input
-                        type="text"
-                        onChange={e => {
-                          let v = e.target.value;
-                          setStartMin(v);
-                        }}
-                        value={startMin}
-                        className={styles.price}
-                      />
+                      <p>06 : 00</p>
                     </div>
                     <div className="d-flex w-100 h-50 ">
                       <span
                         role="Button"
                         tabIndex={-1}
-                        onKeyDown={() => setStartAmOrPm("am")}
-                        className={
-                          startAmOrPm === "am" ? styles.selected : null
-                        }
-                        onClick={() => setStartAmOrPm("am")}
-                      >
+                        onKeyDown={() => setStartAmOrPm("startAm")}
+                        className={startAmOrPm === "startAm" ? styles.selected : null}
+                        onClick={() => setStartAmOrPm("startAm")}>
                         AM
                       </span>
                       <span
                         role="Button"
-                        onKeyDown={() => setStartAmOrPm("pm")}
+                        onKeyDown={() => setStartAmOrPm("startPm")}
                         tabIndex={-1}
-                        className={
-                          startAmOrPm === "pm" ? styles.selected : null
-                        }
-                        onClick={() => setStartAmOrPm("pm")}
-                      >
+                        className={startAmOrPm === "startPm" ? styles.selected : null}
+                        onClick={() => setStartAmOrPm("startPm")}>
                         PM
                       </span>
                     </div>
@@ -180,46 +92,25 @@ export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
                 <div className={`mt-3 ${styles["end-time"]}`}>
                   <p>End Time</p>
                   <div
-                    className={`d-flex flex-column align-items-center justify-content-center  ${styles["time-container"]}`}
-                  >
+                    className={`d-flex flex-column align-items-center justify-content-center  ${styles["time-container"]}`}>
                     <div className="w-100 h-50 d-flex align-items-center justify-content-center">
-                      <input
-                        type="text"
-                        onChange={e => {
-                          let v = e.target.value;
-                          setEndTime(v);
-                        }}
-                        value={endTime}
-                        className={styles.price}
-                      />
-                      <p>:</p>
-                      <input
-                        type="text"
-                        onChange={e => {
-                          let v = e.target.value;
-                          setEndMin(v);
-                        }}
-                        value={endMin}
-                        className={styles.price}
-                      />
+                      <p>06 : 00</p>
                     </div>
                     <div className="d-flex w-100 h-50 ">
                       <span
                         role="Button"
-                        onKeyDown={() => setEndAmOrPm("am")}
+                        onKeyDown={() => setEndAmOrPm("endAm")}
                         tabIndex={-1}
-                        className={endAmOrPm === "am" ? styles.selected : null}
-                        onClick={() => setEndAmOrPm("am")}
-                      >
+                        className={endAmOrPm === "endAm" ? styles.selected : null}
+                        onClick={() => setEndAmOrPm("endAm")}>
                         AM
                       </span>
                       <span
                         role="Button"
-                        onKeyDown={() => setEndAmOrPm("pm")}
+                        onKeyDown={() => setEndAmOrPm("endPm")}
                         tabIndex={-1}
-                        className={endAmOrPm === "pm" ? styles.selected : null}
-                        onClick={() => setEndAmOrPm("pm")}
-                      >
+                        className={endAmOrPm === "endPm" ? styles.selected : null}
+                        onClick={() => setEndAmOrPm("endPm")}>
                         PM
                       </span>
                     </div>
@@ -227,9 +118,9 @@ export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
                 </div>
               </div>
             </div>
-            {/* <div className="w-100 mt-3">
+            <div className="w-100 mt-3">
               <Button theme="outline">OK</Button>
-            </div> */}
+            </div>
           </Col>
 
           <Col
@@ -238,63 +129,52 @@ export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
             sm="10"
             xs="12"
             className="mt-5 d-flex flex-column
-        align-items-end justify-content-between"
-          >
+        align-items-end justify-content-between">
             <div className={styles["time-desc"]}>
-              {/* <span className={styles.title}>March</span> */}
-
-              <div
-                className={`d-flex align-items-center ${styles["chat-calender"]}`}
-              >
+              <p className={styles.title}>March</p>
+              <div className={`d-flex align-items-center ${styles["chat-calender"]}`}>
                 <div
-                  className={`d-flex flex-column align-items-start  justify-content-center w-50 ${styles["start-time-review"]}`}
-                >
-                  <span className={`pl-4 ${styles.title}`}>
-                    {month[startDate.getMonth()]}
-                  </span>
-                  <span className="pl-4">
-                    {startDate.getDate()} - {weekday[startDate.getDay()]}
-                  </span>
-                  <div className="d-flex align-items-center mt-2 pl-4">
-                    <span>Start Time:</span>
-                    <span className="ml-2">
-                      {" "}
-                      {startTime}:{startMin} {startAmOrPm}{" "}
+                  className={`d-flex flex-column align-items-start  justify-content-center w-50 ${styles["start-time-review"]}`}>
+                  <span className="pl-4">10 - Sunday</span>
+                  <div className="d-flex align-items-center w-100 mt-2">
+                    <span className={styles["radio-span"]}>
+                      <RadioButton
+                        name="openhouse"
+                        value="start"
+                        isChecked={startOrEnd === "start"}
+                        handleChange={val => setstartOrEnd(val.target.value)}
+                        inputType="radioButton"
+                        label="Start Time:"
+                      />
                     </span>
+                    <span className="ml-2"> 12:00 pm </span>
                   </div>
 
                   <div className="d-flex align-items-center mt-2 pl-4">
                     <span>End Time:</span>
-                    <span className="ml-2">
-                      {" "}
-                      {endTime}:{endMin} {endAmOrPm}{" "}
-                    </span>
+                    <span className="ml-2"> 13:00 pm </span>
                   </div>
                 </div>
                 <div
-                  className={`d-flex flex-column align-items-start  justify-content-center w-50 ${styles["end-time-review"]}`}
-                >
-                  <span className={`pl-4 ${styles.title}`}>
-                    {month[endDate ? endDate.getMonth() : startDate.getMonth()]}
-                  </span>
-                  <span className="pl-4">
-                    {endDate ? endDate.getDate() : startDate.getDate()} -{" "}
-                    {weekday[endDate ? endDate.getDay() : startDate.getDay()]}
-                  </span>
-                  <div className="d-flex align-items-center mt-2 pl-4">
-                    <span>Start Time:</span>
-                    <span className="ml-2">
-                      {" "}
-                      {startTime}:{startMin} {startAmOrPm}{" "}
+                  className={`d-flex flex-column align-items-start  justify-content-center w-50 ${styles["end-time-review"]}`}>
+                  <span className="pl-4">10 - Sunday</span>
+                  <div className="d-flex align-items-center w-100 mt-2">
+                    <span className={styles["radio-span"]}>
+                      <RadioButton
+                        name="openhouse"
+                        value="end"
+                        isChecked={startOrEnd === "end"}
+                        handleChange={val => setstartOrEnd(val.target.value)}
+                        inputType="radioButton"
+                        label="Start Time:"
+                      />
                     </span>
+                    <span className="ml-2"> 12:00 pm </span>
                   </div>
 
                   <div className="d-flex align-items-center mt-2 pl-4">
                     <span>End Time:</span>
-                    <span className="ml-2">
-                      {" "}
-                      {endTime}:{endMin} {endAmOrPm}{" "}
-                    </span>
+                    <span className="ml-2"> 13:00 pm </span>
                   </div>
                 </div>
               </div>
@@ -302,11 +182,9 @@ export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
 
             <Col lg="8" md="8" sm="12" xs="12">
               <div className={styles.nextbtn}>
-                <Button handleClick={update}>Next</Button>
+                <Button handleClick={() => changePageHandler(7)}>Next</Button>
                 <Link href="/">
-                  <div
-                    className={`${styles.cancel} d-flex align-items-center mt-2`}
-                  >
+                  <div className={`${styles.cancel} d-flex align-items-center mt-2`}>
                     <Cancel />
                     <span className="ml-1">Cancel</span>
                   </div>
@@ -317,6 +195,6 @@ export const OpenHouse: React.FunctionComponent<IOpenHouse.IProps> = ({
         </Row>
       </Container>
     </section>
-  );
-};
-export default OpenHouse;
+  )
+}
+export default OpenHouse

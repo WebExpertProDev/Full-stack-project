@@ -1,9 +1,5 @@
 declare namespace IMedia {
-  export interface IProps {
-    changePageHandler: function;
-    homeInfo: Home;
-    setHomeInfo: function;
-  }
+  export interface IProps {}
 }
 
-export { IMedia };
+export type { IMedia };

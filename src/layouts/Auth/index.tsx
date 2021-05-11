@@ -14,11 +14,11 @@ import { IAuth } from './Auth';
 export const AuthModal: React.FunctionComponent<IAuth.IProps> = ({ isOpen, closeAuthModal }) => {
   const arra = [
     {
-      title: 'Sign In',
+      title: 'sign In',
       component: SignIn,
     },
     {
-      title: 'Sign Up',
+      title: 'sign Up',
       component: SignUp,
     },
   ];
