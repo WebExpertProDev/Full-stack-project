@@ -2,30 +2,27 @@ version: '3'
 
 services:
   backend:
-    image: goro341/housee:backend
-    restart: unless-stopped
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2
+    build: ./services/backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./services/backend/:/usr/src/app/
     expose:
       - 8000
     env_file:
-      - "./${ENV:-production}.env"
-    environment:
-      - ENV=${ENV:-production}
-      - BASE_URI=${BASE_URI:-housee.ai}
+      - ./dev.env
 
   frontend:
-    image: goro341/housee:frontend
-    restart: unless-stopped
+    build: ./services/frontend
+    volumes:
+      - ./services/frontend/:/usr/src/app/
 
-# NOTE: NGINX SHOULD BE THE LAST SERVICE. DO NOT MOVE IT UP.
   nginx:
     image: staticfloat/nginx-certbot
-    restart: always
     environment:
       CERTBOT_EMAIL: "masoud.javeri@housee.ai"
       # variable names are space-separated
       ENVSUBST_VARS: FQDN
-      FQDN: ${BASE_URI:-housee.ai}
+      FQDN: dev.housee.ai
     ports:
       - "80:80"
       - "443:443"
